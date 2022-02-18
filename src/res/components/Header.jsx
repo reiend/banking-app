@@ -36,8 +36,8 @@ const Account = () => {
             <LoginButton />
             <GetStartedButton />
         </div>
-    )
-}
+    );
+};
 
 
 export const Header = (props) => {
