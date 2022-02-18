@@ -1,7 +1,10 @@
 
+
+import Proptypes from "prop-types";
+
 const many         = <span className="bank-name">Many</span>;
 const bank         = <span className="bank">Bank</span>;
-export const Brand = (props) =>
+export const Brand = () =>
     <div>
         <a href="/">{many}{bank}</a>
     </div>;
@@ -14,7 +17,7 @@ const Learn   = () => <li>learn more</li>;
 const FAQs    = () => <li><span>faq</span>s</li>;
 const Contact = () => <li>contact us</li>;
 
-const NavigationList = (props) => {
+const NavigationList = () => {
     return (
         <ul>
             <Home />

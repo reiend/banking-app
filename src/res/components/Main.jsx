@@ -1,5 +1,6 @@
 
-import "../styles/Main.scss"
+import Proptypes from "prop-types";
+import "../styles/Main.scss";
 
 const MarketingTag = () =>
     <p>
@@ -8,6 +9,8 @@ const MarketingTag = () =>
     </p>
 
 export const Button    = ({title}) => <button>{title}</button>;
+Button.propTypes       = {title: Proptypes.string};
+
 const GetStartedButton = () => <Button title={"Get Started"} />;
 const LearnMoreButton  = () => <Button title={"Learn More"} />;
 
