@@ -1,6 +1,5 @@
 
 
-import Proptypes from "prop-types";
 
 const many         = <span className="bank-name">Many</span>;
 const bank         = <span className="bank">Bank</span>;

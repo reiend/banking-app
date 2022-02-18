@@ -29,7 +29,7 @@ const WelcomePage = () => {
             <MarketingTag />
             <Explore />
         </section>
-    )
+    );
 }
 
 const WelcomeImage = () => <img src="" alt="image1" />;
