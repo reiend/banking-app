@@ -1,5 +1,5 @@
 
-import { Navigation } from "./Navigation";
+import Proptypes      from "prop-types";
 import { Fragment }   from "react";
 import { Button }     from "./Main";
 
@@ -18,7 +18,7 @@ const LanguageChanger = () =>
         </select>
     </div>;
 
-export const Utility = (props) => {
+export const Utility = () => {
     return (
         <Fragment>
             <SearchBar />
@@ -52,5 +52,11 @@ export const Header = (props) => {
             <Account />
         </header>
     );
+};
+
+Header.propTypes = {
+    children:   Proptypes.element,
+    brand:      Proptypes.elementType,
+    utility:    Proptypes.elementType,
 };
 
