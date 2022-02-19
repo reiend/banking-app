@@ -15,6 +15,10 @@ const LanguageChanger = () =>
             ariaLabel="language changer"
             name="language"
             id="language">
+            <option value="English">English</option>
+            <option value="Filipino">Filipino</option>
+            <option value="Japanese">日本語</option>
+            <option value="Italian">Italian</option>
         </select>
     </div>;
 
@@ -30,7 +34,7 @@ export const Utility = () => {
 const LoginButton      = () => <Button title={"Login"} />;
 const GetStartedButton = () => <Button title={"Get Started"} />;
 
-const Account = () => {
+const AccountControl = () => {
     return (
         <div>
             <LoginButton />
@@ -49,7 +53,7 @@ export const Header = (props) => {
                 { utility }
             </div>
             { children }
-            <Account />
+            <AccountControl />
         </header>
     );
 };
