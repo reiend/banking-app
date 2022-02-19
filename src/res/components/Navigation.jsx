@@ -16,24 +16,20 @@ const Learn   = () => <li>learn more</li>;
 const FAQs    = () => <li><span>faq</span>s</li>;
 const Contact = () => <li>contact us</li>;
 
-const NavigationList = () => {
-    return (
-        <ul>
-            <Home />
-            <About />
-            <Invest />
-            <Protect />
-            <Learn />
-            <FAQs />
-            <Contact />
-        </ul>
-    );
-};
+const NavigationList = ({children}) => <ul>{children}</ul>
 
 export const Navigation = () => {
     return (
         <nav>
-            <NavigationList />
+            <NavigationList>
+                <Home />
+                <About />
+                <Invest />
+                <Protect />
+                <Learn />
+                <FAQs />
+                <Contact />
+            </ NavigationList>
         </nav>
     );
 };
