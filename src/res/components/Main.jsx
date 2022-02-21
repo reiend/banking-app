@@ -1,5 +1,6 @@
-
+import { useContext, createContext } from "react";
 import Proptypes from "prop-types";
+import { AccountPage } from "./pages//AccountPage";
 import "../styles/Main.scss";
 
 const MarketingTag = () =>
@@ -41,8 +42,7 @@ const WelcomeImage = () => <img src="" alt="image1" />;
 export const Main = () => {
     return (
         <main className="main-page">
-            <WelcomePage />
-            <WelcomeImage />
+          <AccountPage />
         </main>
     );
 };
