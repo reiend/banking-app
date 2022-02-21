@@ -1,8 +1,9 @@
 import { useBalanceContext, BalanceContext } from "../states/BalanceStates.jsx"
-import { useRef } from "react";
+import { useRef, forwardRef, useImperativeHandle } from "react";
 import { onClickTransaction } from "../global/utils"
+import { Input } from "../global/components"
 
-export const WithdrawInput = () => {
+export const WithdrawInput =() => {
   const setBalance = useBalanceContext(BalanceContext);
   const withdrawRef = useRef(null);
   const onClickWithdraw = () => onClickTransaction(withdrawRef, setBalance);
@@ -10,7 +11,7 @@ export const WithdrawInput = () => {
   return (
     <div>
       <label htmlFor="withdraw">Withdraw: </label>
-      <input type="text" id="withdraw"  name="withdraw" ref={withdrawRef}/>
+      <Input name={"withdraw"} ref={withdrawRef}/>
       <button onClick={onClickWithdraw}>withdraw</button>
     </div>
   );

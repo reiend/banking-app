@@ -1,6 +1,7 @@
 import { useBalanceContext, BalanceContext } from "../states/BalanceStates.jsx"
 import { useRef } from "react";
 import { onClickTransaction } from "../global/utils"
+import { Input } from "../global/components"
 
 export const DepositInput = () => {
   const setBalance= useBalanceContext(BalanceContext);
@@ -10,7 +11,7 @@ export const DepositInput = () => {
   return (
     <div>
       <label htmlFor="deposit">Deposit: </label>
-      <input type="text" id="deposit"  name="deposit" ref={depositRef}/>
+      <Input name={"deposit"} ref={depositRef}/>
       <button onClick={onClickDeposit}>deposit</button>
     </div>
   );
