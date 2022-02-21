@@ -11,7 +11,7 @@ export const useAccountContext = () => useContext(AccountContext);
 //   return [balance, setBalance];
 // };
 
-export const accountReducer = (previous, action) => {
+const accountReducer = (previous, action) => {
   const {type, inputValue}          = action;
   const {WITHDRAW, DEPOSIT}         = TransactionOption;
   const {TRANSACTION_ERROR_MESSAGE} = ErrorMessage;
@@ -23,8 +23,8 @@ export const accountReducer = (previous, action) => {
   }
 };
 
-export const useAccount = (reducer, value, initialValue) => {
-  const [accountState, setAccount] = useReducer(reducer, value, initialValue);
-  return [accountState, setAccount];
+export const useAccount = (value, initialValue) => {
+  const [account, setAccount] = useReducer(accountReducer, value, initialValue);
+  return [account, setAccount];
 };
 
