@@ -1,19 +1,31 @@
 import { WithdrawInput } from "../account/WithdrawInput";
-import { DepositInput } from "../account/DepositInput";
+import { DepositInput }  from "../account/DepositInput";
+import { 
+  AccountContext, 
+  accountReducer, 
+  useAccount,
+} from "../states/AccountState";
 
-import { useBalance, BalanceContext, } from "../states/BalanceStates"
+const initialAccount = () => ({
+  balance: 5000,
+});
 
 export const AccountPage = () => {
-  const [balance, setBalance] = useBalance(5000);
+  const [accountState, setAccount] = useAccount(
+    accountReducer, 
+    {}, 
+    initialAccount
+  );
   return (
-    <div>
-      <div>
-        <div>Balance: {balance}</div>
-        <BalanceContext.Provider value={setBalance}>
-          <WithdrawInput/>
-          <DepositInput/>
-        </BalanceContext.Provider>
-      </div>
-    </div>
+    <section>
+      <AccountContext.Provider value={setAccount}>
+        <div>
+          <div>Balance: {accountState.balance}</div>
+            <WithdrawInput/>
+            <DepositInput/>
+        </div>
+      </AccountContext.Provider>
+    </section>
   );
 };
+

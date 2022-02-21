@@ -1,6 +1,6 @@
 export const TransactionOption = {
   WITHDRAW: "WITHDRAW",
-  DEPOSIT: "DEPOSIT",
+  DEPOSIT:  "DEPOSIT",
 };
 
 export const ErrorMessage = {
