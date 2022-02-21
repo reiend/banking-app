@@ -1,6 +1,8 @@
+import { currencyFormat } from "../global/utils";
+
 export const onClickTransaction = (inputRef, setTransaction) => {
     const TRANSACTION = inputRef.current.name.toUpperCase();
-    const inputValue  = parseFloat(inputRef.current.value);
+    const inputValue  = currencyFormat(inputRef.current.value);
 
     if(Number.isNaN(inputValue)) return;
 
@@ -12,7 +14,7 @@ export const onClickTransaction = (inputRef, setTransaction) => {
     //   case DEPOSIT: set(balance => balance - inputValue); break;
     //   default: throw new Error(TRANSACTION_ERROR_MESSAGE);
     // }
-    
+  
     setTransaction({type: TRANSACTION, inputValue});
 
     // Reset input
