@@ -1,3 +1,6 @@
+html {
+  font-size: 62.5%;
+}
 .App {
   text-align: center;
 }
@@ -36,3 +39,50 @@
     transform: rotate(360deg);
   }
 }
+.navbar {
+  display: flex;
+  list-style: none;
+  background-color: lightgreen;
+  min-height: 10vh;
+  justify-content: space-around;
+  align-items: center;
+}
+.navbar-list {
+  font-size: 2.2rem;
+}
+.navigation-bar {
+  min-height: 10vh;
+  display: flex;
+  background-color: lightgreen;
+  flex-direction: row; 
+  align-items: center;
+}
+.navigation-lists {
+  width: 60%;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+}
+.navigation-list {
+  font-size: 1.8rem;
+  list-style: none;
+}
+.navigation-title {
+  font-size: 3rem;
+  text-decoration: none;
+}
+.container {
+  padding: 2rem;
+  font-weight: 700;
+}
+.many {
+  color: steelblue;
+  font-style: italic;
+}
+.bank {
+  color: #2f5677;
+}
+.link {
+  text-decoration: none;
+}
+

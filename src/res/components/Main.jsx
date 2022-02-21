@@ -656,10 +656,8 @@ const BoilingVerdict = ({celcius})   => celcius >= 100 ? boil : notBoil;
 const toCelcius      = (fahrenheit)  => (fahrenheit - 32) * 5 / 9;
 const toFahrenheit   = (celcius)     => (celcius * 9 / 5) + 32;
 const tryToConvert   = (temperature, convert) => {
-
     const input = parseFloat(temperature);
     if (Number.isNaN(input)) return "";
-
     const output = convert(temperature);
     const rounded = Math.round(output * 1000) / 1000;
     return `${rounded}`;
@@ -669,7 +667,6 @@ const tryToConvert   = (temperature, convert) => {
 const scaleNames = {C: "Celcius", F: "Fahrenheit"};
 
 class TemperatureInput extends Component {
-
     handleChange = (event) =>
         {this.props.onTemperatureChange(event.target.value)};
 
@@ -690,7 +687,6 @@ class TemperatureInput extends Component {
                     />
                 </label>
             </fieldset>
-
         )
     }
 }
@@ -1171,12 +1167,11 @@ const reducer = (state, action) => {
         case "reset":
             return init(action.payload);
         default:
-            throw new Error();
+            return state;
     }
 }
 
-const CounterReduce = ({initialCount}) => {
-
+const CounterReduce = ( {initialCount} ) => {
     const [state, dispatch] = useReducer(reducer, initialCount, init);
     const decrement = () => dispatch({type: "decrement"});
     const increment = () => dispatch({type: "increment"});

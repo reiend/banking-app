@@ -1,18 +1,17 @@
-import logo from './logo.svg';
+import Main from "./res/components/Main";
+import TestBank from "./res/components/TestBank.jsx";
+import { Bank } from "./res/components/testApp/Bank";
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Banking App</h1>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          WIP
-        </p>
-      </header>
+      {/* <Main /> */}
+      <TestBank />
+      {/* <Bank/> */}
     </div>
   );
 }
 
 export default App;
+
