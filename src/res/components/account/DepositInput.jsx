@@ -1,7 +1,7 @@
 import { useBalanceContext, BalanceContext } from "../states/BalanceStates.jsx"
 import { useRef } from "react";
-import { onClickTransaction } from "../global/utils"
-import { Input } from "../global/components"
+import { onClickTransaction } from "./transaction";
+import { Input } from "../global/components";
 
 export const DepositInput = () => {
   const setBalance= useBalanceContext(BalanceContext);
