@@ -11,15 +11,15 @@ export const useAccountContext = () => useContext(AccountContext);
 //   return [balance, setBalance];
 // };
 
-export const accountReducer = (state, action) => {
+export const accountReducer = (previous, action) => {
   const {type, inputValue}          = action;
   const {WITHDRAW, DEPOSIT}         = TransactionOption;
   const {TRANSACTION_ERROR_MESSAGE} = ErrorMessage;
 
   switch(type) {
-    case WITHDRAW: return ({balance: state.balance - inputValue});
-    case DEPOSIT:  return ({balance: state.balance + inputValue});
-    default: throw new Error(TRANSACTION_ERROR_MESSAGE);
+    case WITHDRAW: return ({balance: previous.balance - inputValue});
+    case DEPOSIT:  return ({balance: previous.balance + inputValue});
+    default:       throw new Error(TRANSACTION_ERROR_MESSAGE);
   }
 };
 
