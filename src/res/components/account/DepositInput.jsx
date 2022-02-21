@@ -1,12 +1,12 @@
-import { useBalanceContext, BalanceContext } from "../states/BalanceStates.jsx"
-import { useRef } from "react";
+import { useRef }             from "react";
+import { useAccountContext }  from "../states/AccountState";
 import { onClickTransaction } from "./transaction";
-import { Input } from "../global/components";
+import { Input }              from "../global/components";
 
 export const DepositInput = () => {
-  const setBalance= useBalanceContext(BalanceContext);
-  const depositRef = useRef(null);
-  const onClickDeposit = () => onClickTransaction(depositRef, setBalance);
+  const setAccount     = useAccountContext();
+  const depositRef     = useRef(null);
+  const onClickDeposit = () => onClickTransaction(depositRef, setAccount);
 
   return (
     <div>
