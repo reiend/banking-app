@@ -5,8 +5,9 @@ import { useBalance, BalanceContext, } from "../states/BalanceStates"
 
 export const AccountPage = () => {
   const [balance, setBalance] = useBalance(5000);
+
   return (
-    <div>
+    <section>
       <div>
         <div>Balance: {balance}</div>
         <BalanceContext.Provider value={setBalance}>
@@ -14,7 +15,7 @@ export const AccountPage = () => {
           <DepositInput/>
         </BalanceContext.Provider>
       </div>
-    </div>
+    </section>
   );
 };
 
