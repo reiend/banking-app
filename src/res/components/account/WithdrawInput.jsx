@@ -1,6 +1,6 @@
 import { useBalanceContext, BalanceContext } from "../states/BalanceStates.jsx"
-import { useRef , } from "react";
-import { onClickTransaction } from "../utils"
+import { useRef } from "react";
+import { onClickTransaction } from "../global/utils"
 
 export const WithdrawInput = () => {
   const setBalance = useBalanceContext(BalanceContext);
