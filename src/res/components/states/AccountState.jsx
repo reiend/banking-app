@@ -1,9 +1,12 @@
-import { useContext, createContext, useReducer } from "react";
-import { TransactionOption }                     from "../global/constants";
-import { ErrorMessage }                          from "../global/constants";   
+import { useReducer }        from "react";
+import { TransactionOption } from "../global/constants";
+import { ErrorMessage }      from "../global/constants";   
 
-export const AccountContext = createContext(null);
-export const useAccountContext = () => useContext(AccountContext);
+export const initialAccount = () => ({
+  firstname: "jake",
+  lastname:  "lonceras",
+  balance:    1000,
+});
 
 // old code
 // export const useBalance = (initialBalance) => {
@@ -11,20 +14,20 @@ export const useAccountContext = () => useContext(AccountContext);
 //   return [balance, setBalance];
 // };
 
-export const accountReducer = (previous, action) => {
+const accountReducer = (previous, action) => {
   const {type, inputValue}          = action;
   const {WITHDRAW, DEPOSIT}         = TransactionOption;
   const {TRANSACTION_ERROR_MESSAGE} = ErrorMessage;
 
   switch(type) {
-    case WITHDRAW: return ({balance: previous.balance - inputValue});
-    case DEPOSIT:  return ({balance: previous.balance + inputValue});
+    case WITHDRAW: return {balance: previous.balance - inputValue};
+    case DEPOSIT:  return {balance: previous.balance + inputValue};
     default:       throw new Error(TRANSACTION_ERROR_MESSAGE);
   }
 };
 
-export const useAccount = (reducer, value, initialValue) => {
-  const [accountState, setAccount] = useReducer(reducer, value, initialValue);
-  return [accountState, setAccount];
+export const useAccount = (value) => {
+  const [account, setAccount] = useReducer(accountReducer, value, initialAccount);
+  return [account, setAccount];
 };
 
