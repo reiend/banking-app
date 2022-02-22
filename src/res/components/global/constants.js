@@ -19,3 +19,4 @@ export const SignificantValue = {
   TWO: 100,
 };
 
+export const FIRST_LETTER = 0;

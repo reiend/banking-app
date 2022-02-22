@@ -1,4 +1,4 @@
-import { SignificantValue } from "./constants";
+import { FIRST_LETTER, SignificantValue } from "./constants";
 
 export const currencyFormat = (value) => {
   const floatValue  = parseFloat(value);
@@ -10,6 +10,6 @@ export const formatDisplay = (display) => {
   const displayUpperCase          = display.toUpperCase();
   const displayLowerCase          = display.toLowerCase();
   const displayWithoutFirstLetter = displayLowerCase.slice(1);
-  return `${displayUpperCase[0]}${displayWithoutFirstLetter}`;
+  return `${displayUpperCase[FIRST_LETTER]}${displayWithoutFirstLetter}`;
 };
 
