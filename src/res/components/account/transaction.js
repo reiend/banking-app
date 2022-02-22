@@ -1,7 +1,7 @@
 import { currencyFormat } from "../global/utils";
 import { ResetValue, ErrorMessage } from "../global/constants";
 
-export const onClickTransaction = (inputRef, setTransaction) => {
+export const processTransaction = (inputRef, setTransaction) => {
     const TRANSACTION = inputRef.current.name.toUpperCase();
     const inputValue  = currencyFormat(inputRef.current.value);
 

@@ -1,12 +1,12 @@
 import { useRef }             from "react";
-import { useAccountContext }  from "../states/AccountState";
-import { onClickTransaction } from "./transaction";
+import { useAccountContext }  from "../context/AccountContext";
+import { processTransaction } from "./transaction";
 import { Input }              from "../global/components";
 
 export const DepositInput = () => {
   const setAccount     = useAccountContext();
   const depositRef     = useRef(null);
-  const onClickDeposit = () => onClickTransaction(depositRef, setAccount);
+  const onClickDeposit = () => processTransaction(depositRef, setAccount);
 
   return (
     <div>
