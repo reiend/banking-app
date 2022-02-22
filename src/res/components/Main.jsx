@@ -42,7 +42,7 @@ const WelcomeImage = () => <img src="" alt="image1" />;
 export const Main = () => {
     return (
         <main className="main-page">
-          <AccountPage />
+          <AccountPage/>
         </main>
     );
 };

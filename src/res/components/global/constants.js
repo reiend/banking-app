@@ -4,8 +4,8 @@ export const TransactionOption = {
 };
 
 export const ErrorMessage = {
-  TRANSACTION_ERROR_MESSAGE:    "Invalid Transaction",
-  INPUT_CURRENCY_ERROR_MESSAGE: "Invalid Input currency",
+  TRANSACTION_ERROR_MESSAGE:             "Invalid Transaction",
+  INPUT_TRANSACTION_VALUE_ERROR_MESSAGE: "Invalid Input currency",
 };
 
 export const ResetValue = {

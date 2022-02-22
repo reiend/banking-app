@@ -5,11 +5,11 @@ export const onClickTransaction = (inputRef, setTransaction) => {
     const TRANSACTION = inputRef.current.name.toUpperCase();
     const inputValue  = currencyFormat(inputRef.current.value);
 
-    const {RESET_STRING_VALUE}           = ResetValue;
-    const {INPUT_CURRENCY_ERROR_MESSAGE} = ErrorMessage;
+    const {RESET_STRING_VALUE}                    = ResetValue;
+    const {INPUT_TRANSACTION_VALUE_ERROR_MESSAGE} = ErrorMessage;
     if(Number.isNaN(inputValue)) {
       inputRef.current.value = RESET_STRING_VALUE;
-      throw new Error(INPUT_CURRENCY_ERROR_MESSAGE);
+      throw new Error(INPUT_TRANSACTION_VALUE_ERROR_MESSAGE);
      }
 
     // old code
