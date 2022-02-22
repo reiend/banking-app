@@ -24,19 +24,24 @@ const accountReducer = (previousState, action) => {
   const {WITHDRAW, DEPOSIT}                         = TransactionOption;
   const {ADD_EXPENSE, DELETE_EXPENSE, EDIT_EXPENSE} = ExpenseOption;
   const {ACCOUNT_OPTION_MESSAGE_ERROR}              = ErrorMessage;
-  const {type, inputValue, expense}                 = action;
+  const {type, inputValue, expense, expenseValue}   = action;
+  
+  // Account operations
+  const withdrawBalance  = previousState.balance - inputValue;
+  const depositBalance   = previousState.balance + inputValue;
+  const deductBalance    = previousState.balance - expenseValue;
+  const addExpense       = () => previousState.expenses.push(expense);
 
-  const withdrawBalance = previousState.balance - inputValue;
-  const depositBalance  = previousState.balance + inputValue;
-  const addExpense      = () => previousState.expenses.push(expense);
-
-  console.log(previousState);
+  // Updated Account information
+  const balanceUpdateWithdraw = {...previousState, balance: withdrawBalance};
+  const balanceUpdateDeposit  = {...previousState, balance: depositBalance};
+  const balanceUpdateDeduc    = {...previousState, balance: deductBalance};
 
   // Acount options
   switch(type) {
-    case WITHDRAW:    return {...previousState, balance: withdrawBalance};
-    case DEPOSIT:     return {...previousState, balance: depositBalance};
-    case ADD_EXPENSE: addExpense(); return {...previousState};
+    case WITHDRAW:    return {...balanceUpdateWithdraw};
+    case DEPOSIT:     return {...balanceUpdateDeposit};
+    case ADD_EXPENSE: addExpense(); return {...balanceUpdateDeduc};
     default:          throw new Error(ACCOUNT_OPTION_MESSAGE_ERROR);
   }
 };

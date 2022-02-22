@@ -43,7 +43,7 @@ export const ProcessAccount = {
 
     const expense = {[expenseName]: expenseValue};
 
-    setAccount({type: "ADD_EXPENSE", expense});
+    setAccount({type: "ADD_EXPENSE", expense, expenseValue});
     
     // Reset form
     expenseNameObject.value  = RESET_STRING_VALUE;
