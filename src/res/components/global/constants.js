@@ -1,11 +1,23 @@
-export const TransactionOption = {
-  WITHDRAW: "WITHDRAW",
-  DEPOSIT:  "DEPOSIT",
+export const AccountOption = {
+  TransactionOption: {
+    WITHDRAW: "WITHDRAW",
+    DEPOSIT:  "DEPOSIT",
+  },
+  ExpenseOption: {
+    ADD_EXPENSE:    "ADD_EXPENSE",
+    DELETE_EXPENSE: "DELETE_EXPENSE",
+    EDIT_EXPENSE:   "EDIT_EXPENSE",
+  },
+};
+
+export const ExpenseInputName = {
+  EXPENSE_NAME: "expenseName",
+  EXPENSE_VALUE: "expenseValue",
 };
 
 export const ErrorMessage = {
-  TRANSACTION_ERROR_MESSAGE:             "Invalid Transaction",
-  INPUT_TRANSACTION_VALUE_ERROR_MESSAGE: "Invalid Input currency",
+  ACCOUNT_OPTION_MESSAGE_ERROR:    "Invalid Account option",
+  INPUT_CURRENCY_ERROR_MESSAGE:    "Invalid Input currency",
 };
 
 export const ResetValue = {
@@ -20,3 +32,4 @@ export const SignificantValue = {
 };
 
 export const FIRST_LETTER = 0;
+
