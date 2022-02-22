@@ -1,9 +1,17 @@
 import { FIRST_LETTER, SignificantValue } from "./constants";
+import { ErrorMessage }                   from "./constants";   
 
-export const currencyFormat = (value) => {
-  const floatValue  = parseFloat(value);
-  const {TWO}       = SignificantValue;
-  return Math.round(floatValue * TWO) / TWO;
+export const CurrencyUtils = {
+  currencyFormat: (value) => {
+    const floatValue  = parseFloat(value);
+    const {TWO}       = SignificantValue;
+    return Math.round(floatValue * TWO) / TWO;
+  },
+  isInvalidCurrency: (value) => {
+    const {INPUT_CURRENCY_ERROR_MESSAGE} = ErrorMessage;
+    if(Number.isNaN(value)) throw new Error(INPUT_CURRENCY_ERROR_MESSAGE);
+    return false;
+  },
 };
 
 export const formatDisplay = (display) => {

@@ -1,35 +1,9 @@
-import { useRef, useEffect }             from "react";
-import { useAccountContext }             from "../context/AccountContext";
-import { currencyFormat, formatDisplay } from "../global/utils";
-import { Input }                         from "../global/components";
-import { ResetValue, ErrorMessage }      from "../global/constants";
-import Proptype                          from "prop-types";
-
-export const processTransaction = (inputRef, setTransaction) => {
-    const TRANSACTION = inputRef.current.name.toUpperCase();
-    const inputValue  = currencyFormat(inputRef.current.value);
-
-    const {RESET_STRING_VALUE}                    = ResetValue;
-    const {INPUT_TRANSACTION_VALUE_ERROR_MESSAGE} = ErrorMessage;
-    if(Number.isNaN(inputValue)) {
-      inputRef.current.value = RESET_STRING_VALUE;
-      throw new Error(INPUT_TRANSACTION_VALUE_ERROR_MESSAGE);
-     }
-
-    // old code
-    // const { WITHDRAW, DEPOSIT } = TransactionOption;
-    // const { TRANSACTION_ERROR_MESSAGE } = ErrorMessage;
-    // switch(TRANSACTION) {
-    //   case WITHDRAW: set(balance => balance + inputValue); break;
-    //   case DEPOSIT: set(balance => balance - inputValue); break;
-    //   default: throw new Error(TRANSACTION_ERROR_MESSAGE);
-    // }
-  
-    setTransaction({type: TRANSACTION, inputValue});
-
-    // Reset input
-    inputRef.current.value = RESET_STRING_VALUE;
-};
+import { ProcessAccount }    from "./processAccount";
+import { Input }             from "../global/components";
+import Proptype              from "prop-types";
+import { useRef }            from "react";
+import { useAccountContext } from "../context/AccountContext";
+import { formatDisplay,}     from "../global/utils";
 
 // old code
 // export const WithdrawInput = () => {
@@ -61,18 +35,19 @@ export const processTransaction = (inputRef, setTransaction) => {
 // };
 
 export const TransactionInput = ({transaction}) => {
-  const setAccount          = useAccountContext();
-  const inputRef            = useRef(null);
-  const onClickTransaction  = () => processTransaction(inputRef, setAccount);
+  const {processTransaction} = ProcessAccount;
+  const setAccount           = useAccountContext();
+  const inputRef             = useRef(null);
+  const TRANSACTION_TYPE     = transaction.toLowerCase();
+  const DISPLAY_TRANSACTION  = formatDisplay(TRANSACTION_TYPE);
 
-  let transactionType       = transaction.toLowerCase();
-  let displayTransaction    = formatDisplay(transactionType);
+  const onClickTransaction   = () => processTransaction(inputRef, setAccount);
 
   return (
     <div>
-      <label htmlFor={transactionType}>{displayTransaction}: </label>
-      <Input name={transactionType} ref={inputRef}/>
-      <button onClick={onClickTransaction}>{transactionType}</button>
+      <label htmlFor={TRANSACTION_TYPE}>{DISPLAY_TRANSACTION}: </label>
+      <Input name={TRANSACTION_TYPE} ref={inputRef}/>
+      <button onClick={onClickTransaction}>{TRANSACTION_TYPE}</button>
     </div>
   );
 };
