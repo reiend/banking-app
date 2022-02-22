@@ -11,7 +11,7 @@ export const AccountPage = () => {
   return (
     <section>
       <AccountContext.Provider value={setAccount}>
-        <div>Balance: {account.balance}</div>
+        <section>Balance: {account.balance}</section>
         <Transactions {...TransactionOption}/>   
         <Expenses/>     
       </AccountContext.Provider>
