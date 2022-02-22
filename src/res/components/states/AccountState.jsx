@@ -19,12 +19,12 @@ export const initialAccount = () => ({
 //   return [balance, setBalance];
 // };
 
-const accountReducer = (previousState, action) => {
+const accountReducer = (previousState, attribute) => {
   const {TransactionOption, ExpenseOption}          = AccountOption;
   const {WITHDRAW, DEPOSIT}                         = TransactionOption;
   const {ADD_EXPENSE, DELETE_EXPENSE, EDIT_EXPENSE} = ExpenseOption;
   const {ACCOUNT_OPTION_MESSAGE_ERROR}              = ErrorMessage;
-  const {type, inputValue, expense, expenseValue}   = action;
+  const {type, inputValue, expense, expenseValue}   = attribute;
   
   // Account operations
   const withdrawBalance  = previousState.balance - inputValue;

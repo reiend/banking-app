@@ -27,7 +27,7 @@ export const ProcessAccount = {
     // Reset input
     inputRef.current.value = RESET_STRING_VALUE;
   },
-  processExpense: (event, setAccount) => {
+  processExpense: (event, setExpense) => {
     event.preventDefault();
     const {RESET_STRING_VALUE}                 = ResetValue;
     const {isInvalidCurrency, currencyFormat}  = CurrencyUtils;
@@ -43,7 +43,7 @@ export const ProcessAccount = {
 
     const expense = {[expenseName]: expenseValue};
 
-    setAccount({type: "ADD_EXPENSE", expense, expenseValue});
+    setExpense({type: "ADD_EXPENSE", expense, expenseValue});
     
     // Reset form
     expenseNameObject.value  = RESET_STRING_VALUE;
