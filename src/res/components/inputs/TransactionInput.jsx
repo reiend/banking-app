@@ -1,6 +1,6 @@
-import { ProcessAccount }    from "./processAccount";
+import { ProcessAccount }    from "../account/processAccount";
+import { PropTypes }         from "../proptypes/proptypes"
 import { Input }             from "../global/components";
-import Proptype              from "prop-types";
 import { useRef }            from "react";
 import { useAccountContext } from "../context/AccountContext";
 import { formatDisplay,}     from "../global/utils";
@@ -52,5 +52,6 @@ export const TransactionInput = ({transaction}) => {
   );
 };
 
-TransactionInput.propTypes = {transaction: Proptype.string};
+const {TransactionInputProptypes} = PropTypes;
+TransactionInput.propTypes = { ...TransactionInputProptypes };
 

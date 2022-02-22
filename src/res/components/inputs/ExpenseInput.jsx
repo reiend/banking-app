@@ -1,4 +1,4 @@
-import { ProcessAccount }    from "./processAccount";
+import { ProcessAccount }    from "../account/processAccount";
 import { Input }             from "../global/components";
 import { ExpenseInputName }  from "../global/constants";
 import { useAccountContext } from "../context/AccountContext";
