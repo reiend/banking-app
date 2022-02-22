@@ -3,10 +3,10 @@ import { PropTypes }        from "../proptypes/proptypes";
 
 export const Transactions = ({WITHDRAW, DEPOSIT}) => {
   return(
-    <div>
+    <section>
       <TransactionInput transaction={DEPOSIT}/>
       <TransactionInput transaction={WITHDRAW}/>
-    </div>
+    </section>
   );
 };
 
