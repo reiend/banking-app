@@ -1,3 +1,4 @@
+import { Account }        from "../account/Account";
 import { AccountOption }  from "../global/constants";
 import { AccountContext } from "../context/AccountContext"
 import { Expenses }       from "../account/Expenses";
@@ -11,7 +12,7 @@ export const AccountPage = () => {
   return (
     <section>
       <AccountContext.Provider value={{account, setAccount}}>
-        <section>Balance: {account.balance}</section>
+        <Account/>
         <Transactions {...TransactionOption}/>   
         <Expenses/>     
       </AccountContext.Provider>
