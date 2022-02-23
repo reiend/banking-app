@@ -5,8 +5,8 @@ import { useAccountContext } from "../context/AccountContext";
 
 export const ExpenseInput = () => {
   const {EXPENSE_NAME, EXPENSE_VALUE} = ExpenseInputName;
-  const { processExpense }            = ProcessAccount;
-  const setAccount                    = useAccountContext();
+  const {processExpense}              = ProcessAccount;
+  const {setAccount}                  = useAccountContext();
 
   const onSubmitAddExpense = (event) => processExpense(event, setAccount);
 

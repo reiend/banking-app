@@ -16,8 +16,8 @@ export const ExpenseInputName = {
 };
 
 export const ErrorMessage = {
-  ACCOUNT_OPTION_MESSAGE_ERROR:    "Invalid Account option",
-  INPUT_CURRENCY_ERROR_MESSAGE:    "Invalid Input currency",
+  ACCOUNT_OPTION_MESSAGE_ERROR: "Invalid Account option",
+  INPUT_CURRENCY_ERROR_MESSAGE: "Invalid Input currency",
 };
 
 export const ResetValue = {
@@ -32,4 +32,4 @@ export const SignificantValue = {
 };
 
 export const FIRST_LETTER = 0;
-
+export const MAX          = 10000000;
