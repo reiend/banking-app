@@ -11,17 +11,20 @@ export const ExpenseInput = () => {
   const onSubmitAddExpense = (event) => processExpense(event, setAccount);
 
   return(
-    <form onSubmit={onSubmitAddExpense}>
-      <div>
-        <label htmlFor={EXPENSE_NAME}>Expense: </label>
-        <Input name={EXPENSE_NAME}/>   
-      </div>
-      <div>
-        <label htmlFor={EXPENSE_VALUE}>Value: </label>
-        <Input name={EXPENSE_VALUE}/>
-      </div>
-      <button type="submit">Add</button>
-    </form>
+    <div>
+      <h4>List new Expense</h4>
+      <form onSubmit={onSubmitAddExpense}>
+        <div>
+          <label htmlFor={EXPENSE_NAME}>Expense: </label>
+          <Input name={EXPENSE_NAME}/>   
+        </div>
+        <div>
+          <label htmlFor={EXPENSE_VALUE}>Value: </label>
+          <Input name={EXPENSE_VALUE}/>
+        </div>
+        <button type="submit">Add</button>
+      </form>
+    </div>
   )
 };
 

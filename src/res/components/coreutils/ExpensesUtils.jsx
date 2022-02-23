@@ -26,7 +26,12 @@ export const ExpensesList = () => {
 
   useEffect(processExpensesList(account, setExpensesList), [expensesLength]);
 
-  return( <ul>{expensesList}</ul>);
+  return(
+    <div>
+      <h4>List of Expenses</h4>
+      <ul>{expensesList}</ul>
+    </div>
+  );
 };
 
 const {ExpenseItemProptypes} = PropTypes;
