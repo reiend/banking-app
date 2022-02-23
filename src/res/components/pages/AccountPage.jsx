@@ -1,7 +1,7 @@
 import { Account }        from "../account/Account";
 import { AccountOption }  from "../global/constants";
 import { AccountContext } from "../context/AccountContext"
-import { Expenses }       from "../account/Expenses";
+import { Expenses }       from "../expenses/Expenses";
 import { Transactions }   from "../account/Transactions";
 import { useAccount }     from "../states/AccountState";
 

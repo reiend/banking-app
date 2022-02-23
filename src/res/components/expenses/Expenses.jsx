@@ -1,5 +1,5 @@
-import { ExpenseInput }        from "../inputs/ExpenseInput";
-import { ExpensesList }        from "../coreutils/ExpensesUtils";
+import { ExpenseInput }        from "./ExpenseInput";
+import { ExpensesList }        from "./ExpensesList";
 
 export const Expenses = () => {
   return(
