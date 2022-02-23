@@ -1,4 +1,4 @@
-import { TransactionInput } from "../inputs/TransactionInput";
+import { TransactionInput } from "./TransactionInput";
 import { PropTypes }        from "../proptypes/proptypes";
 
 export const Transactions = ({WITHDRAW, DEPOSIT}) => {
