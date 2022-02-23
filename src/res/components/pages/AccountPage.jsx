@@ -2,7 +2,7 @@ import { Account }        from "../account/Account";
 import { AccountOption }  from "../global/constants";
 import { AccountContext } from "../context/AccountContext"
 import { Expenses }       from "../expenses/Expenses";
-import { Transactions }   from "../account/Transactions";
+import { Transactions }   from "../transactions/Transactions";
 import { useAccount }     from "../states/AccountState";
 
 export const AccountPage = () => {
