@@ -1,7 +1,7 @@
 import { ExpenseItem }       from "./ExpenseItem";
-import { Random }            from "../../../global/utils";
-import { useExpensesList }   from "../../../states/ExpensesListState";
-import { useAccountContext } from "../../../context/AccountContext";
+import { Random }            from "../../../../../global/utils";
+import { useExpensesList }   from "../../../../../states/ExpensesListState";
+import { useAccountContext } from "../../../../../context/AccountContext";
 import { useEffect }         from "react";
 
 const processExpensesList = (account, setExpensesList) => {

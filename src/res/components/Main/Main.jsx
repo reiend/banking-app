@@ -1,5 +1,5 @@
 import { AccountPage } from "./pages//AccountPage/AccountPage";
-import "../styles/Main.scss";
+import "../../styles/Main.scss";
 
 export const Main = () => {
     return (

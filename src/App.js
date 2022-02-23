@@ -1,5 +1,5 @@
 import { Fragment }            from "react";
-import { Main }                from "./res/components/Main.jsx";
+import { Main }                from "./res/components/Main/Main";
 
 function App() {
   return (
