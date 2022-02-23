@@ -1,9 +1,9 @@
 import { Account }        from "./account/Account";
 import { Expenses }       from "./expenses/Expenses";
 import { Transactions }   from "./transactions/Transactions";
-import { AccountOption }  from "../../../../global/constants";
-import { AccountContext } from "../../../../context/AccountContext"
-import { useAccount }     from "../../../../states/AccountState";
+import { AccountOption }  from "res/global/constants";
+import { AccountContext } from "res/context/AccountContext"
+import { useAccount }     from "res/states/AccountState";
 
 export const AccountPage = () => {
   const {TransactionOption}   = AccountOption;
