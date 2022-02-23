@@ -6,7 +6,6 @@ export const Expenses = () => {
     <section>
       <ExpensesList />
       <ExpenseInput/>  
-      {/* <ExpensesEdit /> */}
     </section>  
   );
 };

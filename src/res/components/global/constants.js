@@ -3,7 +3,7 @@ export const AccountOption = {
     WITHDRAW: "WITHDRAW",
     DEPOSIT:  "DEPOSIT",
   },
-  ExpenseOption: {
+  ExpensesOption: {
     ADD_EXPENSE:    "ADD_EXPENSE",
     DELETE_EXPENSE: "DELETE_EXPENSE",
     EDIT_EXPENSE:   "EDIT_EXPENSE",

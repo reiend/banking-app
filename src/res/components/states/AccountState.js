@@ -20,29 +20,32 @@ export const initialAccount = () => ({
 // };
 
 const accountReducer = (previousState, attribute) => {
-  const {TransactionOption, ExpenseOption}          = AccountOption;
-  const {WITHDRAW, DEPOSIT}                         = TransactionOption;
-  const {ADD_EXPENSE, DELETE_EXPENSE, EDIT_EXPENSE} = ExpenseOption;
-  const {ACCOUNT_OPTION_MESSAGE_ERROR}              = ErrorMessage;
-  const {type, inputValue, expense, expenseValue}   = attribute;
+  const {TransactionOption, ExpensesOption}           = AccountOption;
+  const {WITHDRAW, DEPOSIT}                           = TransactionOption;
+  const {ADD_EXPENSE, DELETE_EXPENSE, EDIT_EXPENSE}   = ExpensesOption;
+  const {ACCOUNT_OPTION_MESSAGE_ERROR}                = ErrorMessage;
+  const {type, inputValue, expense, expenseValue, id} = attribute;
   
   // Account operations
   const withdrawBalance  = previousState.balance - inputValue;
   const depositBalance   = previousState.balance + inputValue;
   const deductBalance    = previousState.balance - expenseValue;
   const addExpense       = () => previousState.expenses.push(expense);
+  const deleteExpense    = () => previousState.expenses.splice(id, 1);
 
   // Updated Account information
   const balanceUpdateWithdraw = {...previousState, balance: withdrawBalance};
   const balanceUpdateDeposit  = {...previousState, balance: depositBalance};
   const balanceUpdateDeduc    = {...previousState, balance: deductBalance};
+  const expensesUpdate        = {...previousState};
 
   // Acount options
   switch(type) {
-    case WITHDRAW:    return {...balanceUpdateWithdraw};
-    case DEPOSIT:     return {...balanceUpdateDeposit};
-    case ADD_EXPENSE: addExpense(); return {...balanceUpdateDeduc};
-    default:          throw new Error(ACCOUNT_OPTION_MESSAGE_ERROR);
+    case WITHDRAW:        return {...balanceUpdateWithdraw};
+    case DEPOSIT:         return {...balanceUpdateDeposit};
+    case ADD_EXPENSE:     addExpense(); return {...balanceUpdateDeduc};
+    case DELETE_EXPENSE:  deleteExpense(); return {...expensesUpdate};
+    default:              throw new Error(ACCOUNT_OPTION_MESSAGE_ERROR);
   }
 };
 
