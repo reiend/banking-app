@@ -1,4 +1,4 @@
-import { useAccountContext } from "../context/AccountContext";  
+import { useAccountContext } from "res/context/AccountContext";  
 
 export const Account = () => {
   const {account} = useAccountContext();

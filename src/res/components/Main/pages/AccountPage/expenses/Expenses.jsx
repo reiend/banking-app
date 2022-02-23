@@ -1,5 +1,5 @@
-import { ExpenseInput }        from "./ExpenseInput";
-import { ExpensesList }        from "./ExpensesList";
+import { ExpenseInput } from "./ExpenseInput";
+import { ExpensesList } from "./ExpensesList";
 
 export const Expenses = () => {
   return(
