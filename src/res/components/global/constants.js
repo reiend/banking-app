@@ -32,8 +32,9 @@ export const SignificantValue = {
 };
 
 export const Quantity = {
-  ONE: 1,
-  ONE: 2,
+  ONE:   1,
+  TWO:   2,
+  THREE: 3,
 };
 
 export const FIRST_LETTER = 0;
