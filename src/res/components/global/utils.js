@@ -1,5 +1,5 @@
-import { FIRST_LETTER, SignificantValue } from "./constants";
-import { ErrorMessage }                   from "./constants";   
+import { FIRST_LETTER, MAX, SignificantValue} from "./constants";
+import { ErrorMessage }                       from "./constants";   
 
 export const CurrencyUtils = {
   currencyFormat: (value) => {
@@ -19,5 +19,14 @@ export const formatDisplay = (display) => {
   const displayLowerCase          = display.toLowerCase();
   const displayWithoutFirstLetter = displayLowerCase.slice(1);
   return `${displayUpperCase[FIRST_LETTER]}${displayWithoutFirstLetter}`;
+};
+
+export const Random = {
+  getNumber: (range) => Math.floor(Math.random() * range),
+  getKey(salt) {
+      const key1 = this.getNumber(MAX);
+      const key2 = this.getNumber(MAX);
+      return `${salt}-${key1}-${key2}`;
+  },  
 };
 

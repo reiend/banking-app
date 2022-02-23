@@ -1,5 +1,7 @@
 import { CurrencyUtils }     from "../global/utils";
 import { ResetValue }        from "../global/constants";
+import { Random }            from "../global/utils";
+import { ExpenseItem }       from "../coreutils/ExpensesUtils"
 
 export const ProcessAccount = {
   processTransaction: (inputRef, setTransaction) => {
@@ -21,7 +23,8 @@ export const ProcessAccount = {
     //   case DEPOSIT: set(balance => balance - inputValue); break;
     //   default: throw new Error(TRANSACTION_ERROR_MESSAGE);
     // }
-  
+    
+    // process transaction
     setTransaction({type: TRANSACTION, inputValue});
 
     // Reset input
@@ -43,11 +46,19 @@ export const ProcessAccount = {
 
     const expense = {[expenseName]: expenseValue};
 
+    // process adding expense
     setExpense({type: "ADD_EXPENSE", expense, expenseValue});
     
     // Reset form
     expenseNameObject.value  = RESET_STRING_VALUE;
     expenseValueObject.value = RESET_STRING_VALUE;
+  },
+  processExpensesList: (account, setExpensesList) => {
+    return () => setExpensesList(account.expenses.map(expense => {
+      const [name]  = Object.keys(expense);
+      const [value] = Object.values(expense);
+      return <ExpenseItem key={Random.getKey(name)} name={name} value={value}/>;
+    }));
   },
 };
 

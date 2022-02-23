@@ -36,7 +36,7 @@ import { formatDisplay,}     from "../global/utils";
 
 export const TransactionInput = ({transaction}) => {
   const {processTransaction} = ProcessAccount;
-  const setAccount           = useAccountContext();
+  const {setAccount}         = useAccountContext();
   const inputRef             = useRef(null);
   const TRANSACTION_TYPE     = transaction.toLowerCase();
   const DISPLAY_TRANSACTION  = formatDisplay(TRANSACTION_TYPE);
@@ -53,5 +53,5 @@ export const TransactionInput = ({transaction}) => {
 };
 
 const {TransactionInputProptypes} = PropTypes;
-TransactionInput.propTypes = { ...TransactionInputProptypes };
+TransactionInput.propTypes        = { ...TransactionInputProptypes };
 
