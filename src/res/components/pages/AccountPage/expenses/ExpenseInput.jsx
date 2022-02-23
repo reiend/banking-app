@@ -1,8 +1,8 @@
-import { Input }                     from "../global/components";
-import { ExpenseInputName }          from "../global/constants";
-import { CurrencyUtils }             from "../global/utils";
-import { AccountOption, ResetValue } from "../global/constants";
-import { useAccountContext }         from "../context/AccountContext";
+import { Input }                     from "../../../global/components";
+import { ExpenseInputName }          from "../../../global/constants";
+import { CurrencyUtils }             from "../../../global/utils";
+import { AccountOption, ResetValue } from "../../../global/constants";
+import { useAccountContext }         from "../../../context/AccountContext";
 
 const processExpenseAdd = (event, setExpenses) => {
   event.preventDefault();

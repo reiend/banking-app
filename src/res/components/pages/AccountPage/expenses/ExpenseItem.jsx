@@ -1,6 +1,6 @@
-import { PropTypes }         from "../proptypes/proptypes";
-import { AccountOption}      from "../global/constants";
-import { useAccountContext } from "../context/AccountContext";  
+import { PropTypes }         from "../../../proptypes/proptypes";
+import { AccountOption}      from "../../../global/constants";
+import { useAccountContext } from "../../../context/AccountContext";  
 
 const processExpenseItemDelete = (id, setExpenses) => {
   const {ExpensesOption} = AccountOption;

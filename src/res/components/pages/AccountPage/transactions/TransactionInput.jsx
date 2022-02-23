@@ -1,9 +1,9 @@
-import { PropTypes }         from "../proptypes/proptypes"
-import { Input }             from "../global/components";
-import { CurrencyUtils }     from "../global/utils";
-import { ResetValue }        from "../global/constants";
-import { useAccountContext } from "../context/AccountContext";
-import { formatDisplay,}     from "../global/utils";
+import { PropTypes }         from "../../../proptypes/proptypes"
+import { Input }             from "../../../global/components";
+import { CurrencyUtils }     from "../../../global/utils";
+import { ResetValue }        from "../../../global/constants";
+import { useAccountContext } from "../../../context/AccountContext";
+import { formatDisplay,}     from "../../../global/utils";
 import { useRef }            from "react";
 
 const processTransaction = (inputRef, setTransaction) => {

@@ -1,4 +1,4 @@
-import { AccountPage } from "./pages//AccountPage";
+import { AccountPage } from "./pages//AccountPage/AccountPage";
 import "../styles/Main.scss";
 
 export const Main = () => {
