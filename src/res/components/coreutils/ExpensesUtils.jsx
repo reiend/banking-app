@@ -30,5 +30,5 @@ export const ExpensesList = () => {
 };
 
 const {ExpenseItemProptypes} = PropTypes;
-ExpenseItem.prototypes       = {...ExpenseItemProptypes}
+ExpenseItem.propTypes        = {...ExpenseItemProptypes}
 
