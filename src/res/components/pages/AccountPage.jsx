@@ -8,7 +8,6 @@ export const AccountPage = () => {
   const {TransactionOption}   = AccountOption;
   const [account, setAccount] = useAccount({});
 
-  console.log(account.expenses);
   return (
     <section>
       <AccountContext.Provider value={{account, setAccount}}>
@@ -19,4 +18,3 @@ export const AccountPage = () => {
     </section>
   );
 };
-
