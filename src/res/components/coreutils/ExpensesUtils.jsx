@@ -2,10 +2,20 @@ import { ProcessAccount }    from "../account/processAccount";
 import { PropTypes }         from "../proptypes/proptypes";
 import { useExpensesList }   from "../states/ExpensesListState";
 import { useAccountContext } from "../context/AccountContext";  
-import { useEffect }         from "react";
+import { useEffect } from "react";
 
-export const ExpenseItem = ({name, value}) => {
-  return( <li><span>{name}</span>-<span>{value}</span></li>);
+export const ExpenseItem = ({name, value, id}) => {
+  const {processExpenseItemDelete} = ProcessAccount;
+  const {setAccount}               = useAccountContext();
+
+  const onClickItemDelete  = () => processExpenseItemDelete(id, setAccount);
+
+  return( 
+    <li id={name}>
+      <span>{name}</span>-<span>{value}</span>
+      <button onClick={onClickItemDelete}>X</button>
+      <button>edit</button>
+    </li>);
 };
 
 export const ExpensesList = () => {
@@ -21,3 +31,4 @@ export const ExpensesList = () => {
 
 const {ExpenseItemProptypes} = PropTypes;
 ExpenseItem.prototypes       = {...ExpenseItemProptypes}
+

@@ -1,7 +1,7 @@
-import { CurrencyUtils }     from "../global/utils";
-import { ResetValue }        from "../global/constants";
-import { Random }            from "../global/utils";
-import { ExpenseItem }       from "../coreutils/ExpensesUtils"
+import { CurrencyUtils }             from "../global/utils";
+import { AccountOption, ResetValue } from "../global/constants";
+import { Random }                    from "../global/utils";
+import { ExpenseItem }               from "../coreutils/ExpensesUtils"
 
 export const ProcessAccount = {
   processTransaction: (inputRef, setTransaction) => {
@@ -30,8 +30,10 @@ export const ProcessAccount = {
     // Reset input
     inputRef.current.value = RESET_STRING_VALUE;
   },
-  processExpense: (event, setExpense) => {
+  processExpense: (event, setExpenses) => {
     event.preventDefault();
+    const {ExpensesOption}                     = AccountOption;
+    const {ADD_EXPENSE}                        = ExpensesOption;
     const {RESET_STRING_VALUE}                 = ResetValue;
     const {isInvalidCurrency, currencyFormat}  = CurrencyUtils;
 
@@ -47,18 +49,28 @@ export const ProcessAccount = {
     const expense = {[expenseName]: expenseValue};
 
     // process adding expense
-    setExpense({type: "ADD_EXPENSE", expense, expenseValue});
+    setExpenses({type: ADD_EXPENSE, expense, expenseValue});
     
     // Reset form
     expenseNameObject.value  = RESET_STRING_VALUE;
     expenseValueObject.value = RESET_STRING_VALUE;
   },
   processExpensesList: (account, setExpensesList) => {
-    return () => setExpensesList(account.expenses.map(expense => {
-      const [name]  = Object.keys(expense);
-      const [value] = Object.values(expense);
-      return <ExpenseItem key={Random.getKey(name)} name={name} value={value}/>;
+    return () => setExpensesList(account.expenses.map((expense, i)=> {
+      const [name]          = Object.keys(expense);
+      const [value]         = Object.values(expense);
+      const expenseItemKey  = Random.getKey(name);
+      const expenseItemInfo = { name: `${name}`, value: `${value}`, }
+
+      return <ExpenseItem key={expenseItemKey} {...expenseItemInfo} id={i}/>;
     }));
+  },
+  processExpenseItemDelete: (id, setExpenses) => {
+    const {ExpensesOption} = AccountOption;
+    const {DELETE_EXPENSE} = ExpensesOption;
+    
+    // process deleting expense
+    setExpenses({type: DELETE_EXPENSE, id})
   },
 };
 
