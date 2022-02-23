@@ -2,7 +2,7 @@ import { ProcessAccount }    from "../account/processAccount";
 import { PropTypes }         from "../proptypes/proptypes";
 import { useExpensesList }   from "../states/ExpensesListState";
 import { useAccountContext } from "../context/AccountContext";  
-import { useEffect } from "react";
+import { useEffect }         from "react";
 
 export const ExpenseItem = ({name, value, id}) => {
   const {processExpenseItemDelete} = ProcessAccount;
