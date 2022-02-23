@@ -31,5 +31,10 @@ export const SignificantValue = {
   TWO: 100,
 };
 
+export const Quantity = {
+  ONE: 1,
+  ONE: 2,
+};
+
 export const FIRST_LETTER = 0;
 export const MAX          = 10000000;

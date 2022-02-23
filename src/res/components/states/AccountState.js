@@ -1,4 +1,4 @@
-import { AccountOption, ErrorMessage } from "../global/constants";
+import { AccountOption, ErrorMessage, Quantity } from "../global/constants";
 import { useReducer }                  from "react";
 
 export const initialAccount = () => ({
@@ -24,6 +24,7 @@ const accountReducer = (previousState, attribute) => {
   const {WITHDRAW, DEPOSIT}                           = TransactionOption;
   const {ADD_EXPENSE, DELETE_EXPENSE, EDIT_EXPENSE}   = ExpensesOption;
   const {ACCOUNT_OPTION_MESSAGE_ERROR}                = ErrorMessage;
+  const {ONE}                                         = Quantity;
   const {type, inputValue, expense, expenseValue, id} = attribute;
   
   // Account operations
@@ -31,7 +32,7 @@ const accountReducer = (previousState, attribute) => {
   const depositBalance   = previousState.balance + inputValue;
   const deductBalance    = previousState.balance - expenseValue;
   const addExpense       = () => previousState.expenses.push(expense);
-  const deleteExpense    = () => previousState.expenses.splice(id, 1);
+  const deleteExpense    = () => previousState.expenses.splice(id, ONE);
 
   // Updated Account information
   const balanceUpdateWithdraw = {...previousState, balance: withdrawBalance};
