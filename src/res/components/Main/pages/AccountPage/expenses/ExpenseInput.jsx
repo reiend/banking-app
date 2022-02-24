@@ -45,13 +45,12 @@ export const ExpenseInput = () => {
       // set Expense operation
       const setAddExpense  = () => setExpenses({...add});
       const setEditExpense = () => setExpenses({...edit});   setIsEditing(NO);
-      const setCancelEdit  = () => setExpenses({...cancel}); setIsEditing(NO);
 
       // Expense options
       switch(DO) {
         case ADD:     setAddExpense();  break;
         case EDIT:    setEditExpense(); break;
-        case CANCEL:  setCancelEdit();  break;
+        case CANCEL:  break;
         default:      break;
       }
 

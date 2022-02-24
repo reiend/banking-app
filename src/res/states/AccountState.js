@@ -46,16 +46,17 @@ const accountReducer = (previousState, attribute) => {
   // Do Account operation
   const doWithdraw   = () => ({...balanceUpdateWithdraw});
   const doDeposit    = () => ({...balanceUpdateDeposit});
-  const doCancelEdit = () => ({...previousState});
+  // const doCancelEdit = () => ({...previousState});
   const doEdit       = () => {addExpense(); return ({...balanceUpdateDeduc})};
   const doDelete     = () => {deleteExpense(); return ({...expensesUpdate})};
   const doAdd        = () => {addExpense(); return ({...balanceUpdateDeduc})};
+  console.log("hello");
 
   // Acount options
   switch(type) {
     case WITHDRAW:            return doWithdraw();
     case DEPOSIT:             return doDeposit();
-    case CANCEL_EDIT_EXPENSE: return doCancelEdit();
+    // case CANCEL_EDIT_EXPENSE: return doCancelEdit();
     case EDIT_EXPENSE:        return doEdit();
     case DELETE_EXPENSE:      return doDelete();
     case ADD_EXPENSE:         return doAdd();
