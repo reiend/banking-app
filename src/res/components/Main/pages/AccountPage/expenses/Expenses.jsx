@@ -5,13 +5,16 @@ import { useExpenses }      from "res/states/ExpensesState";
 import { useRef }           from "react";
 
 export const Expenses = () => {
-  const inputRef                  = useRef(null);
+  const expenseNameRef            = useRef(null);
+  const expenseValueRef           = useRef(null);
   const [isEditing, setIsEditing] = useExpenses(false);
+  const expenseInputRef           = {expenseNameRef, expenseValueRef};
+  const useExpenseEdit            = {isEditing, setIsEditing};
 
   return(
     <section>
       <h3>Expenses</h3>
-      <ExpensesContext.Provider value={{inputRef, isEditing, setIsEditing}}> 
+      <ExpensesContext.Provider value={{expenseInputRef, useExpenseEdit}}> 
         <ExpensesList />
         <ExpenseInput />  
       </ExpensesContext.Provider>

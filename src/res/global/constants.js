@@ -40,7 +40,7 @@ export const Quantity = {
 
 export const ButtonType = {
   ADD:    "add",
-  EDIT:   "edit",
+  EDIT:   "save",
   CANCEL: "cancel",
 };
 

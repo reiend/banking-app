@@ -43,6 +43,7 @@ const accountReducer = (previousState, attribute) => {
     case ADD_EXPENSE:         addExpense(); return {...balanceUpdateDeduc};
     case DELETE_EXPENSE:      deleteExpense(); return {...expensesUpdate};
     case EDIT_EXPENSE:        addExpense(); return {...balanceUpdateDeduc};
+    case CANCEL_EDIT_EXPENSE: return {...previousState};
     default:                  throw new Error(ACCOUNT_OPTION_MESSAGE_ERROR);
   }
 };
