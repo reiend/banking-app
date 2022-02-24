@@ -16,11 +16,11 @@ export const ExpenseInput = () => {
   const {expenseNameRef, expenseValueRef}  = expenseInputRef;
 
   const doExpense = (event) => {
-      const {ExpensesOption}                                 = AccountOption;
-      const {ADD_EXPENSE, EDIT_EXPENSE, CANCEL_EDIT_EXPENSE} = ExpensesOption;
-      const {RESET_STRING_VALUE}                             = ResetValue;
-      const {NO}                                             = EditingChoices;
-      const {isInvalidCurrency, currencyFormat}              = CurrencyUtils;
+      const {ExpensesOption}                    = AccountOption;
+      const {ADD_EXPENSE, EDIT_EXPENSE}         = ExpensesOption;
+      const {RESET_STRING_VALUE}                = ResetValue;
+      const {NO}                                = EditingChoices;
+      const {isInvalidCurrency, currencyFormat} = CurrencyUtils;
 
       const {setIsEditing}     = useExpenseEdit;
       const expenseNameObject  = expenseNameRef.current;
@@ -40,7 +40,6 @@ export const ExpenseInput = () => {
       // Expense operation
       const add    = {...setExpensesParams, type: ADD_EXPENSE};
       const edit   = {...setExpensesParams, type: EDIT_EXPENSE};
-      const cancel = {...setExpensesParams, type: CANCEL_EDIT_EXPENSE};
 
       // set Expense operation
       const setAddExpense  = () => setExpenses({...add});
@@ -53,7 +52,8 @@ export const ExpenseInput = () => {
         case CANCEL:  break;
         default:      break;
       }
-
+      
+      setIsEditing(NO);
       // Reset input
       expenseNameObject.value  = RESET_STRING_VALUE;
       expenseValueObject.value = RESET_STRING_VALUE;
@@ -64,8 +64,8 @@ export const ExpenseInput = () => {
 
   return(
     <div>
-      {isEditing  || <h4>List new Expense</h4>}
-      {!isEditing || <h4>Editing Expense</h4>}
+      {!isEditing && <h4>List new Expense</h4>}
+      {isEditing  && <h4>Editing Expense</h4>}
       <div>
         <label htmlFor={EXPENSE_NAME}>Expense: </label>
         <Input name={EXPENSE_NAME} ref={expenseNameRef}/>   
@@ -74,9 +74,9 @@ export const ExpenseInput = () => {
         <label htmlFor={EXPENSE_VALUE}>Value: </label>
         <Input name={EXPENSE_VALUE} ref={expenseValueRef}/>
       </div>
-      {isEditing  || <button {...doButton(ADD)}>{ADD}</button>}
-      {!isEditing || <button {...doButton(EDIT)}>{EDIT}</button>}
-      {!isEditing || <button {...doButton(CANCEL)}>{CANCEL}</button>}
+      {!isEditing && <button {...doButton(ADD)}>{ADD}</button>}
+      {isEditing  && <button {...doButton(EDIT)}>{EDIT}</button>}
+      {isEditing  && <button {...doButton(CANCEL)}>{CANCEL}</button>}
     </div>
   );
 };
