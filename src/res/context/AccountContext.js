@@ -1,4 +1,5 @@
-import { PropTypes }                 from "res/proptypes/proptypes";
+import { PropTypes } from "res/proptypes/proptypes";
+
 import { createContext, useContext } from "react";
 
 export const AccountContext       = createContext(null);

@@ -1,5 +1,6 @@
-import { PropTypes }          from "res/proptypes/proptypes";
-import { AccountOption}       from "res/global/constants";
+import { PropTypes }    from "res/proptypes/proptypes";
+import { AccountOption} from "res/global/constants";
+
 import { useAccountContext }  from "res/context/AccountContext";  
 import { useExpensesContext } from "res/context/ExpensesContext";
 

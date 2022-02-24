@@ -1,5 +1,6 @@
-import { ExpenseItem }       from "./ExpenseItem";
-import { Random }            from "res/global/utils";
+import { ExpenseItem } from "./ExpenseItem";
+import { Random }      from "res/global/utils";
+
 import { useExpensesList }   from "res/states/ExpensesListState";
 import { useAccountContext } from "res/context/AccountContext";
 import { useEffect }         from "react";

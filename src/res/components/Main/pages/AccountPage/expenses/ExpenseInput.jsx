@@ -1,15 +1,17 @@
-import { Input }                           from "res/global/components";
-import { AccountOption, ExpenseInputName } from "res/global/constants";
-import { ResetValue, ButtonType }          from "res/global/constants";
-import { CurrencyUtils }                   from "res/global/utils";
-import { useAccountContext }               from "res/context/AccountContext";
-import { useExpensesContext }              from "res/context/ExpensesContext";
+import { Input }                                  from "res/global/components";
+import { AccountOption, ExpenseInputName }        from "res/global/constants";
+import { ResetValue, ButtonType, EditingChoices } from "res/global/constants";
+import { CurrencyUtils }                          from "res/global/utils";
+
+import { useAccountContext }  from "res/context/AccountContext";
+import { useExpensesContext } from "res/context/ExpensesContext";
 
 const doExpense = (event, doExpenseParams) => {
     const {ExpensesOption}                                 = AccountOption;
     const {ADD_EXPENSE, EDIT_EXPENSE, CANCEL_EDIT_EXPENSE} = ExpensesOption;
     const {RESET_STRING_VALUE}                             = ResetValue;
     const {ADD, EDIT, CANCEL}                              = ButtonType;
+    const {YES, NO}                                        = EditingChoices;
     const {isInvalidCurrency, currencyFormat}              = CurrencyUtils;
 
     const {setAccount: setExpenses}         = doExpenseParams;
@@ -31,21 +33,20 @@ const doExpense = (event, doExpenseParams) => {
     const setExpensesParams = {expense, expenseValue};
     const DO                = event.target.name;
 
+    // Expense operation
+    const addExpense    = {...setExpensesParams, type: ADD_EXPENSE};
+    const editExpense   = {...setExpensesParams, type: EDIT_EXPENSE};
+    const cancelExpense = {...setExpensesParams, type: CANCEL_EDIT_EXPENSE};
+
+    // Expense options
     switch(DO) {
-      case ADD:
-        setExpenses({...setExpensesParams, type: ADD_EXPENSE}); 
-        break;
-      case EDIT:
-        setExpenses({...setExpensesParams, type: EDIT_EXPENSE});
-        setIsEditing(false);
-        break;
-      case CANCEL:
-        setExpenses({...setExpensesParams, type: CANCEL_EDIT_EXPENSE});
-        setIsEditing(false);
-        break;
+      case ADD:     setExpenses({...addExpense}); break;
+      case EDIT:    setExpenses({...editExpense}); setIsEditing(NO); break;
+      case CANCEL:  setExpenses({...cancelExpense}); setIsEditing(YES); break;
+      default:      break;
     }
 
-    // Reset form
+    // Reset input
     expenseNameObject.value  = RESET_STRING_VALUE;
     expenseValueObject.value = RESET_STRING_VALUE;
 };
