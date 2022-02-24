@@ -11,6 +11,11 @@ const TransactionProptypes = {
   DEPOSIT:  Proptype.string,
 };
 
+const ExpensesContextPropTypes = {
+  chilren:  Proptype.array,
+  value:    Proptype.object,
+};
+
 const ExpenseItemPropType = {
   name:  Proptype.string,
   value: Proptype.number,
@@ -21,6 +26,7 @@ export const PropTypes = {
   AccountContextProptypes,
   TransactionProptypes,
   TransactionInputProptypes,
+  ExpensesContextPropTypes,
   ExpenseItemPropType,
 };
 

@@ -7,31 +7,31 @@ import { useAccountContext } from "res/context/AccountContext";
 import { formatDisplay }     from "res/global/utils";
 import { useRef }            from "react";
 
-const processTransaction = (inputRef, setTransaction) => {
-  const {RESET_STRING_VALUE}                = ResetValue;
-  const {currencyFormat, isInvalidCurrency} = CurrencyUtils;
-
-  const TRANSACTION = inputRef.current.name.toUpperCase();
-  const inputValue  = currencyFormat(inputRef.current.value);
-
-  if(isInvalidCurrency(inputValue)) {
-    inputRef.current.value = RESET_STRING_VALUE;
-  }
-
-  // process transaction
-  setTransaction({type: TRANSACTION, inputValue});
-
-  // Reset input
-  inputRef.current.value = RESET_STRING_VALUE;
-};
-
 export const TransactionInput = ({transaction}) => {
-  const {setAccount}         = useAccountContext();
-  const inputRef             = useRef(null);
-  const TRANSACTION_TYPE     = transaction.toLowerCase();
-  const DISPLAY_TRANSACTION  = formatDisplay(TRANSACTION_TYPE);
+  const {setAccount: setTransaction} = useAccountContext();
+  const inputRef                     = useRef(null);
+  const TRANSACTION_TYPE             = transaction.toLowerCase();
+  const DISPLAY_TRANSACTION          = formatDisplay(TRANSACTION_TYPE);
 
-  const onClickTransaction   = () => processTransaction(inputRef, setAccount);
+  const processTransaction = () => {
+    const {RESET_STRING_VALUE}                = ResetValue;
+    const {currencyFormat, isInvalidCurrency} = CurrencyUtils;
+
+    const TRANSACTION = inputRef.current.name.toUpperCase();
+    const inputValue  = currencyFormat(inputRef.current.value);
+
+    if(isInvalidCurrency(inputValue)) {
+      inputRef.current.value = RESET_STRING_VALUE;
+    }
+
+    // process transaction
+    setTransaction({type: TRANSACTION, inputValue});
+
+    // Reset input
+    inputRef.current.value = RESET_STRING_VALUE;
+  };
+
+  const onClickTransaction   = () => processTransaction();
 
   return (
     <div>

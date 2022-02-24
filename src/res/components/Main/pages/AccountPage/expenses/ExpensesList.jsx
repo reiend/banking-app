@@ -5,7 +5,13 @@ import { useExpensesList }   from "res/states/ExpensesListState";
 import { useAccountContext } from "res/context/AccountContext";
 import { useEffect }         from "react";
 
-const doExpensesList = (account, setExpensesList) => () => {
+
+export const ExpensesList = () => {
+  const [expensesList, setExpensesList] = useExpensesList();
+  const {account}                       = useAccountContext();
+  const expensesLength                  = account.expenses.length;
+
+  const doExpensesList = () => () => {
     const expensesListRaw = ((expense, i) => {
       const [name]          = Object.keys(expense);
       const [value]         = Object.values(expense);
@@ -13,15 +19,11 @@ const doExpensesList = (account, setExpensesList) => () => {
       const expenseItemInfo = { name: `${name}`, value: `${value}`, }
       return <ExpenseItem key={expenseItemKey} {...expenseItemInfo} id={i}/>;
     });
+
     setExpensesList(account.expenses.map(expensesListRaw));
-};
+  };
 
-export const ExpensesList = () => {
-  const [expensesList, setExpensesList] = useExpensesList();
-  const {account}                       = useAccountContext();
-  const expensesLength                  = account.expenses.length;
-
-  useEffect(doExpensesList(account, setExpensesList), [expensesLength]);
+  useEffect(doExpensesList(), [expensesLength]);
 
   return(
     <div>

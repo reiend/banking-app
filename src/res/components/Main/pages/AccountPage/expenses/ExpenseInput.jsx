@@ -6,70 +6,63 @@ import { CurrencyUtils }                          from "res/global/utils";
 import { useAccountContext }  from "res/context/AccountContext";
 import { useExpensesContext } from "res/context/ExpensesContext";
 
-const doExpense = (event, doExpenseParams) => {
-    const {ExpensesOption}                                 = AccountOption;
-    const {ADD_EXPENSE, EDIT_EXPENSE, CANCEL_EDIT_EXPENSE} = ExpensesOption;
-    const {RESET_STRING_VALUE}                             = ResetValue;
-    const {ADD, EDIT, CANCEL}                              = ButtonType;
-    const {YES, NO}                                        = EditingChoices;
-    const {isInvalidCurrency, currencyFormat}              = CurrencyUtils;
-
-    const {setAccount: setExpenses}         = doExpenseParams;
-    const {expenseInputRef}                 = doExpenseParams;
-    const {useExpenseEdit}                  = doExpenseParams;
-    const {expenseNameRef, expenseValueRef} = expenseInputRef;
-    const {setIsEditing}                    = useExpenseEdit;
-    const expenseNameObject                 = expenseNameRef.current;
-    const expenseValueObject                = expenseValueRef.current;
-    const value                             = expenseValueObject.value;
-    const expenseName                       = expenseNameObject.value;
-    const expenseValue                      = currencyFormat(value);
-
-    if(isInvalidCurrency(expenseValue)) {
-      expenseValueObject.value = RESET_STRING_VALUE;
-    }
-
-    const expense           = {[expenseName]: expenseValue};
-    const setExpensesParams = {expense, expenseValue};
-    const DO                = event.target.name;
-
-    // Expense operation
-    const add    = {...setExpensesParams, type: ADD_EXPENSE};
-    const edit   = {...setExpensesParams, type: EDIT_EXPENSE};
-    const cancel = {...setExpensesParams, type: CANCEL_EDIT_EXPENSE};
-
-    // set Expense operation
-    const setAddExpense  = () => setExpenses({...add});
-    const setEditExpense = () => setExpenses({...edit});   setIsEditing(NO);
-    const setCancelEdit  = () => setExpenses({...cancel}); setIsEditing(NO);
-
-    // Expense options
-    switch(DO) {
-      case ADD:     setAddExpense();  break;
-      case EDIT:    setEditExpense(); break;
-      case CANCEL:  setCancelEdit();  break;
-      default:      break;
-    }
-
-    // Reset input
-    expenseNameObject.value  = RESET_STRING_VALUE;
-    expenseValueObject.value = RESET_STRING_VALUE;
-};
-
 export const ExpenseInput = () => {
   const {EXPENSE_NAME, EXPENSE_VALUE} = ExpenseInputName;
   const {ADD, EDIT, CANCEL}           = ButtonType;
 
-  const {expenseInputRef, useExpenseEdit} = useExpensesContext();
-  const {account, setAccount}             = useAccountContext();
-  const {isEditing}                       = useExpenseEdit;
-  const {expenseNameRef, expenseValueRef} = expenseInputRef;
-  const useAccount                        = {account, setAccount};
-  const useExpense                        = {expenseInputRef, useExpenseEdit};
-  const doExpenseParams                   = {...useAccount, ...useExpense};
+  const {expenseInputRef, useExpenseEdit}  = useExpensesContext();
+  const {account, setAccount: setExpenses} = useAccountContext();
+  const {isEditing}                        = useExpenseEdit;
+  const {expenseNameRef, expenseValueRef}  = expenseInputRef;
 
-  const onClickExpenseDo  = (event) => doExpense(event, doExpenseParams);
+  const doExpense = (event) => {
+      const {ExpensesOption}                                 = AccountOption;
+      const {ADD_EXPENSE, EDIT_EXPENSE, CANCEL_EDIT_EXPENSE} = ExpensesOption;
+      const {RESET_STRING_VALUE}                             = ResetValue;
+      const {NO}                                             = EditingChoices;
+      const {isInvalidCurrency, currencyFormat}              = CurrencyUtils;
+
+      const {setIsEditing}     = useExpenseEdit;
+      const expenseNameObject  = expenseNameRef.current;
+      const expenseValueObject = expenseValueRef.current;
+      const value              = expenseValueObject.value;
+      const expenseName        = expenseNameObject.value;
+      const expenseValue       = currencyFormat(value);
+
+      if(isInvalidCurrency(expenseValue)) {
+        expenseValueObject.value = RESET_STRING_VALUE;
+      }
+
+      const expense           = {[expenseName]: expenseValue};
+      const setExpensesParams = {expense, expenseValue};
+      const DO                = event.target.name;
+
+      // Expense operation
+      const add    = {...setExpensesParams, type: ADD_EXPENSE};
+      const edit   = {...setExpensesParams, type: EDIT_EXPENSE};
+      const cancel = {...setExpensesParams, type: CANCEL_EDIT_EXPENSE};
+
+      // set Expense operation
+      const setAddExpense  = () => setExpenses({...add});
+      const setEditExpense = () => setExpenses({...edit});   setIsEditing(NO);
+      const setCancelEdit  = () => setExpenses({...cancel}); setIsEditing(NO);
+
+      // Expense options
+      switch(DO) {
+        case ADD:     setAddExpense();  break;
+        case EDIT:    setEditExpense(); break;
+        case CANCEL:  setCancelEdit();  break;
+        default:      break;
+      }
+
+      // Reset input
+      expenseNameObject.value  = RESET_STRING_VALUE;
+      expenseValueObject.value = RESET_STRING_VALUE;
+  };
+
+  const onClickExpenseDo  = (event) => doExpense(event);
   const doButton          = (name) => ({name, onClick: onClickExpenseDo});
+
   return(
     <div>
       {isEditing  || <h4>List new Expense</h4>}
