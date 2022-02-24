@@ -34,15 +34,20 @@ const doExpense = (event, doExpenseParams) => {
     const DO                = event.target.name;
 
     // Expense operation
-    const addExpense    = {...setExpensesParams, type: ADD_EXPENSE};
-    const editExpense   = {...setExpensesParams, type: EDIT_EXPENSE};
-    const cancelExpense = {...setExpensesParams, type: CANCEL_EDIT_EXPENSE};
+    const add    = {...setExpensesParams, type: ADD_EXPENSE};
+    const edit   = {...setExpensesParams, type: EDIT_EXPENSE};
+    const cancel = {...setExpensesParams, type: CANCEL_EDIT_EXPENSE};
+
+    // set Expense operation
+    const setAddExpense  = () => setExpenses({...add});
+    const setEditExpense = () => setExpenses({...edit});   setIsEditing(NO);
+    const setCancelEdit  = () => setExpenses({...cancel}); setIsEditing(NO);
 
     // Expense options
     switch(DO) {
-      case ADD:     setExpenses({...addExpense}); break;
-      case EDIT:    setExpenses({...editExpense}); setIsEditing(NO); break;
-      case CANCEL:  setExpenses({...cancelExpense}); setIsEditing(YES); break;
+      case ADD:     setAddExpense();  break;
+      case EDIT:    setEditExpense(); break;
+      case CANCEL:  setCancelEdit();  break;
       default:      break;
     }
 
@@ -59,15 +64,16 @@ export const ExpenseInput = () => {
   const {account, setAccount}             = useAccountContext();
   const {isEditing}                       = useExpenseEdit;
   const {expenseNameRef, expenseValueRef} = expenseInputRef;
-  const forAccount                        = {account, setAccount};
-  const forExpense                        = {expenseInputRef, useExpenseEdit};
-  const doExpenseParams                   = {...forAccount, ...forExpense};
+  const useAccount                        = {account, setAccount};
+  const useExpense                        = {expenseInputRef, useExpenseEdit};
+  const doExpenseParams                   = {...useAccount, ...useExpense};
 
   const onClickExpenseDo  = (event) => doExpense(event, doExpenseParams);
   const doButton          = (name) => ({name, onClick: onClickExpenseDo});
   return(
     <div>
-      <h4>List new Expense</h4>
+      {isEditing  || <h4>List new Expense</h4>}
+      {!isEditing || <h4>Editing Expense</h4>}
       <div>
         <label htmlFor={EXPENSE_NAME}>Expense: </label>
         <Input name={EXPENSE_NAME} ref={expenseNameRef}/>   

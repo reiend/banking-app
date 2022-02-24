@@ -15,14 +15,20 @@ export const initialAccount = () => ({
 });
 
 const accountReducer = (previousState, attribute) => {
-  const {TransactionOption, ExpensesOption}    = AccountOption;
-  const {WITHDRAW, DEPOSIT}                    = TransactionOption;
-  const {ADD_EXPENSE, DELETE_EXPENSE}          = ExpensesOption;
-  const {EDIT_EXPENSE, CANCEL_EDIT_EXPENSE}    = ExpensesOption;
-  const {ACCOUNT_OPTION_MESSAGE_ERROR}         = ErrorMessage;
-  const {ONE}                                  = Quantity;
-  const {type, inputValue, id}                 = attribute;
-  const {expense, expenseValue, editedExpense} = attribute;
+  const {TransactionOption, ExpensesOption} = AccountOption;
+  const {WITHDRAW, DEPOSIT}                 = TransactionOption;
+  const {ADD_EXPENSE, DELETE_EXPENSE}       = ExpensesOption;
+  const {EDIT_EXPENSE, CANCEL_EDIT_EXPENSE} = ExpensesOption;
+  const {ACCOUNT_OPTION_MESSAGE_ERROR}      = ErrorMessage;
+  const {ONE}                               = Quantity;
+
+  const {
+    type, 
+    inputValue, 
+    id,
+    expense,
+    expenseValue,
+  } = attribute;
   
   // Account operations
   const withdrawBalance  = previousState.balance - inputValue;
@@ -37,18 +43,26 @@ const accountReducer = (previousState, attribute) => {
   const balanceUpdateDeduc    = {...previousState, balance: deductBalance};
   const expensesUpdate        = {...previousState};
 
+  // Do Account operation
+  const doWithdraw   = () => ({...balanceUpdateWithdraw});
+  const doDeposit    = () => ({...balanceUpdateDeposit});
+  const doCancelEdit = () => ({...previousState});
+  const doEdit       = () => {addExpense(); return ({...balanceUpdateDeduc})};
+  const doDelete     = () => {deleteExpense(); return ({...expensesUpdate})};
+  const doAdd        = () => {addExpense(); return ({...balanceUpdateDeduc})};
+
   // Acount options
   switch(type) {
-    case WITHDRAW:            return {...balanceUpdateWithdraw};
-    case DEPOSIT:             return {...balanceUpdateDeposit};
-    case ADD_EXPENSE:         addExpense(); return {...balanceUpdateDeduc};
-    case DELETE_EXPENSE:      deleteExpense(); return {...expensesUpdate};
-    case EDIT_EXPENSE:        addExpense(); return {...balanceUpdateDeduc};
-    case CANCEL_EDIT_EXPENSE: return {...previousState};
+    case WITHDRAW:            return doWithdraw();
+    case DEPOSIT:             return doDeposit();
+    case CANCEL_EDIT_EXPENSE: return doCancelEdit();
+    case EDIT_EXPENSE:        return doEdit();
+    case DELETE_EXPENSE:      return doDelete();
+    case ADD_EXPENSE:         return doAdd();
     default:                  throw new Error(ACCOUNT_OPTION_MESSAGE_ERROR);
   }
 };
-
+    
 export const useAccount = (value) => {
   const [account, setAccount] = useReducer(accountReducer, value, initialAccount);
   return [account, setAccount];
