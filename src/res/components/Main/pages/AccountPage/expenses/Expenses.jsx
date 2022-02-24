@@ -1,14 +1,15 @@
-import { ExpenseInput }            from "./ExpenseInput";
-import { ExpensesList }            from "./ExpensesList";
-import { ExpensesContext }         from "res/context/ExpensesContext";
+import { EMPTY_REF }       from "res/global/constants"; 
+import { ExpenseInput }    from "./ExpenseInput";
+import { ExpensesList }    from "./ExpensesList";
+import { ExpensesContext } from "res/context/ExpensesContext";
 
 import { useExpenses } from "res/states/ExpensesState";
 import { useRef }      from "react";
 
 export const Expenses = () => {
-  const expenseNameRef            = useRef(null);
-  const expenseValueRef           = useRef(null);
-  const [isEditing, setIsEditing] = useExpenses(false);
+  const expenseNameRef            = useRef(EMPTY_REF);
+  const expenseValueRef           = useRef(EMPTY_REF);
+  const [isEditing, setIsEditing] = useExpenses();
   const expenseInputRef           = {expenseNameRef, expenseValueRef};
   const useExpenseEdit            = {isEditing, setIsEditing};
 

@@ -49,5 +49,8 @@ export const EditingChoices = {
   NO:  false,
 };
 
-export const FIRST_LETTER = 0;
-export const MAX          = 10000000;
+const EMPTY_REF    = null;
+const FIRST_LETTER = 0;
+const MAX          = 10e7;
+
+export {EMPTY_REF, FIRST_LETTER, MAX};
