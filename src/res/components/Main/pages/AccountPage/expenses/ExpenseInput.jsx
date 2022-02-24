@@ -25,9 +25,9 @@ const doExpenseAdd = (event, addExpenseParams) => {
     }
 
     const expense           = {[expenseName]: expenseValue};
-    const setexpensesparams = {type: ADD_EXPENSE, expense, expenseValue};
+    const setExpensesParams = {type: ADD_EXPENSE, expense, expenseValue};
 
-    setExpenses({...setexpensesparams}); 
+    setExpenses({...setExpensesParams}); 
 
     // Reset form
     expenseNameObject.value  = RESET_STRING_VALUE;
