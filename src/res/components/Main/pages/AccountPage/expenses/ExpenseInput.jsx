@@ -3,17 +3,20 @@ import { AccountOption, ExpenseInputName } from "res/global/constants";
 import { ResetValue, ButtonType }          from "res/global/constants";
 import { CurrencyUtils }                   from "res/global/utils";
 import { useAccountContext }               from "res/context/AccountContext";
-import { useRef }                          from "react";
+import { useExpensesContext }              from "res/context/ExpensesContext";
 
-const doExpenseAdd = (event, addExpenseParams) => {
-    const {ExpensesOption}                     = AccountOption;
-    const {ADD_EXPENSE}                        = ExpensesOption;
-    const {RESET_STRING_VALUE}                 = ResetValue;
-    const {isInvalidCurrency, currencyFormat}  = CurrencyUtils;
+const doExpense = (event, doExpenseParams) => {
+    const {ExpensesOption}                                 = AccountOption;
+    const {ADD_EXPENSE, EDIT_EXPENSE, CANCEL_EDIT_EXPENSE} = ExpensesOption;
+    const {RESET_STRING_VALUE}                             = ResetValue;
+    const {ADD, EDIT, CANCEL}                              = ButtonType;
+    const {isInvalidCurrency, currencyFormat}              = CurrencyUtils;
 
-    const {setAccount: setExpenses}         = addExpenseParams;
-    const {expenseInputRefs}                = addExpenseParams;
-    const {expenseNameRef, expenseValueRef} = expenseInputRefs;
+    const {setAccount: setExpenses}         = doExpenseParams;
+    const {expenseInputRef}                 = doExpenseParams;
+    const {useExpenseEdit}                  = doExpenseParams;
+    const {expenseNameRef, expenseValueRef} = expenseInputRef;
+    const {setIsEditing}                    = useExpenseEdit;
     const expenseNameObject                 = expenseNameRef.current;
     const expenseValueObject                = expenseValueRef.current;
     const value                             = expenseValueObject.value;
@@ -25,9 +28,22 @@ const doExpenseAdd = (event, addExpenseParams) => {
     }
 
     const expense           = {[expenseName]: expenseValue};
-    const setExpensesParams = {type: ADD_EXPENSE, expense, expenseValue};
+    const setExpensesParams = {expense, expenseValue};
+    const DO                = event.target.name;
 
-    setExpenses({...setExpensesParams}); 
+    switch(DO) {
+      case ADD:
+        setExpenses({...setExpensesParams, type: ADD_EXPENSE}); 
+        break;
+      case EDIT:
+        setExpenses({...setExpensesParams, type: EDIT_EXPENSE});
+        setIsEditing(false);
+        break;
+      case CANCEL:
+        setExpenses({...setExpensesParams, type: CANCEL_EDIT_EXPENSE});
+        setIsEditing(false);
+        break;
+    }
 
     // Reset form
     expenseNameObject.value  = RESET_STRING_VALUE;
@@ -36,28 +52,33 @@ const doExpenseAdd = (event, addExpenseParams) => {
 
 export const ExpenseInput = () => {
   const {EXPENSE_NAME, EXPENSE_VALUE} = ExpenseInputName;
+  const {ADD, EDIT, CANCEL}           = ButtonType;
 
-  const {account, setAccount} = useAccountContext();
-  const expenseNameRef        = useRef(null);
-  const expenseValueRef       = useRef(null);
-  const expenseInputRefs      = {expenseNameRef, expenseValueRef};
-  const addExpenseParams      = {setAccount, expenseInputRefs}
+  const {expenseInputRef, useExpenseEdit} = useExpensesContext();
+  const {account, setAccount}             = useAccountContext();
+  const {isEditing}                       = useExpenseEdit;
+  const {expenseNameRef, expenseValueRef} = expenseInputRef;
+  const forAccount                        = {account, setAccount};
+  const forExpense                        = {expenseInputRef, useExpenseEdit};
+  const doExpenseParams                   = {...forAccount, ...forExpense};
 
-  const onClickAddExpense = (event) => doExpenseAdd(event, addExpenseParams);
-
+  const onClickExpenseDo  = (event) => doExpense(event, doExpenseParams);
+  const doButton          = (name) => ({name, onClick: onClickExpenseDo});
   return(
     <div>
       <h4>List new Expense</h4>
-        <div>
-          <label htmlFor={EXPENSE_NAME}>Expense: </label>
-          <Input name={EXPENSE_NAME} ref={expenseNameRef}/>   
-        </div>
-        <div>
-          <label htmlFor={EXPENSE_VALUE}>Value: </label>
-          <Input name={EXPENSE_VALUE} ref={expenseValueRef}/>
-        </div>
-        <button name="add" onClick={onClickAddExpense}>Add</button>
+      <div>
+        <label htmlFor={EXPENSE_NAME}>Expense: </label>
+        <Input name={EXPENSE_NAME} ref={expenseNameRef}/>   
+      </div>
+      <div>
+        <label htmlFor={EXPENSE_VALUE}>Value: </label>
+        <Input name={EXPENSE_VALUE} ref={expenseValueRef}/>
+      </div>
+      {isEditing  || <button {...doButton(ADD)}>{ADD}</button>}
+      {!isEditing || <button {...doButton(EDIT)}>{EDIT}</button>}
+      {!isEditing || <button {...doButton(CANCEL)}>{CANCEL}</button>}
     </div>
   );
 };
-
+    
