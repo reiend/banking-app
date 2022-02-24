@@ -11,12 +11,12 @@ export const AccountPage = () => {
   const [account, setAccount] = useAccount({});
 
   return (
-    <section>
+    <main>
       <AccountContext.Provider value={{account, setAccount}}>
         <Account/>
         <Transactions {...TransactionOption}/>   
         <Expenses/>     
       </AccountContext.Provider>
-    </section>
+    </main>
   );
 };
