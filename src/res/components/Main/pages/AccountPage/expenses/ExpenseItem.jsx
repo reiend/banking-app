@@ -1,8 +1,9 @@
-import { PropTypes }         from "res/proptypes/proptypes";
-import { AccountOption}      from "res/global/constants";
-import { useAccountContext } from "res/context/AccountContext";  
+import { PropTypes }          from "res/proptypes/proptypes";
+import { AccountOption}       from "res/global/constants";
+import { useAccountContext }  from "res/context/AccountContext";  
+import { useExpensesContext } from "res/context/ExpensesContext";
 
-const processExpenseItemDelete = (id, setExpenses) => {
+const processExpenseItemDelete = ({id, setAccount: setExpenses}) => {
   const {ExpensesOption} = AccountOption;
   const {DELETE_EXPENSE} = ExpensesOption;
   
@@ -11,9 +12,12 @@ const processExpenseItemDelete = (id, setExpenses) => {
 };
 
 export const ExpenseItem = ({name, value, id}) => {
-  const {setAccount}       = useAccountContext();
-
-  const onClickItemDelete  = () => processExpenseItemDelete(id, setAccount);
+  const {account, setAccount} = useAccountContext();
+  const {inputRef}            = useExpensesContext();
+  const {setIsEditing}        = useExpensesContext();
+  const deleteParams          = {id, inputRef, setAccount};
+  const editParams            = {...deleteParams, account, setIsEditing};
+  const onClickItemDelete     = () => processExpenseItemDelete(deleteParams);
 
   return( 
     <li id={name}>

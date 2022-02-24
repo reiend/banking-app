@@ -13,19 +13,15 @@ export const initialAccount = () => ({
   ],
 });
 
-// old code
-// export const useBalance = (initialBalance) => {
-//   const [balance, setBalance] = useState(initialBalance);
-//   return [balance, setBalance];
-// };
-
 const accountReducer = (previousState, attribute) => {
-  const {TransactionOption, ExpensesOption}           = AccountOption;
-  const {WITHDRAW, DEPOSIT}                           = TransactionOption;
-  const {ADD_EXPENSE, DELETE_EXPENSE, EDIT_EXPENSE}   = ExpensesOption;
-  const {ACCOUNT_OPTION_MESSAGE_ERROR}                = ErrorMessage;
-  const {ONE}                                         = Quantity;
-  const {type, inputValue, expense, expenseValue, id} = attribute;
+  const {TransactionOption, ExpensesOption}    = AccountOption;
+  const {WITHDRAW, DEPOSIT}                    = TransactionOption;
+  const {ADD_EXPENSE, DELETE_EXPENSE}          = ExpensesOption;
+  const {EDIT_EXPENSE, CANCEL_EDIT_EXPENSE}    = ExpensesOption;
+  const {ACCOUNT_OPTION_MESSAGE_ERROR}         = ErrorMessage;
+  const {ONE}                                  = Quantity;
+  const {type, inputValue, id}                 = attribute;
+  const {expense, expenseValue, editedExpense} = attribute;
   
   // Account operations
   const withdrawBalance  = previousState.balance - inputValue;
@@ -42,11 +38,12 @@ const accountReducer = (previousState, attribute) => {
 
   // Acount options
   switch(type) {
-    case WITHDRAW:        return {...balanceUpdateWithdraw};
-    case DEPOSIT:         return {...balanceUpdateDeposit};
-    case ADD_EXPENSE:     addExpense(); return {...balanceUpdateDeduc};
-    case DELETE_EXPENSE:  deleteExpense(); return {...expensesUpdate};
-    default:              throw new Error(ACCOUNT_OPTION_MESSAGE_ERROR);
+    case WITHDRAW:            return {...balanceUpdateWithdraw};
+    case DEPOSIT:             return {...balanceUpdateDeposit};
+    case ADD_EXPENSE:         addExpense(); return {...balanceUpdateDeduc};
+    case DELETE_EXPENSE:      deleteExpense(); return {...expensesUpdate};
+    case EDIT_EXPENSE:        addExpense(); return {...balanceUpdateDeduc};
+    default:                  throw new Error(ACCOUNT_OPTION_MESSAGE_ERROR);
   }
 };
 
