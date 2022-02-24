@@ -1,5 +1,6 @@
 import { AccountOption, ErrorMessage, Quantity } from "../global/constants";
-import { useReducer }                            from "react";
+
+import { useReducer } from "react";
 
 export const initialAccount = () => ({
   id:        "1412-4UD0",

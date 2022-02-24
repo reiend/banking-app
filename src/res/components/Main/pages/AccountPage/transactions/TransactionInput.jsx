@@ -1,7 +1,8 @@
-import { PropTypes }         from "res/proptypes/proptypes"
-import { Input }             from "res/global/components";
-import { CurrencyUtils }     from "res/global/utils";
-import { ResetValue }        from "res/global/constants";
+import { PropTypes }     from "res/proptypes/proptypes"
+import { Input }         from "res/global/components";
+import { CurrencyUtils } from "res/global/utils";
+import { ResetValue }    from "res/global/constants";
+
 import { useAccountContext } from "res/context/AccountContext";
 import { formatDisplay }     from "res/global/utils";
 import { useRef }            from "react";

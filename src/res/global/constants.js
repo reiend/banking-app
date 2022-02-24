@@ -44,5 +44,10 @@ export const ButtonType = {
   CANCEL: "cancel",
 };
 
+export const EditingChoices = {
+  YES: true,
+  NO:  false,
+};
+
 export const FIRST_LETTER = 0;
 export const MAX          = 10000000;
