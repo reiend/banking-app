@@ -1,7 +1,7 @@
-import { PropTypes }     from "res/proptypes/proptypes"
-import { Input }         from "res/global/components";
-import { CurrencyUtils } from "res/global/utils";
-import { ResetValue }    from "res/global/constants";
+import { ResetValue, EMPTY_REF } from "res/global/constants";
+import { PropTypes }             from "res/proptypes/proptypes"
+import { Input }                 from "res/global/components";
+import { CurrencyUtils }         from "res/global/utils";
 
 import { useAccountContext } from "res/context/AccountContext";
 import { formatDisplay }     from "res/global/utils";
@@ -9,7 +9,7 @@ import { useRef }            from "react";
 
 export const TransactionInput = ({transaction}) => {
   const {setAccount: setTransaction} = useAccountContext();
-  const inputRef                     = useRef(null);
+  const inputRef                     = useRef(EMPTY_REF);
   const TRANSACTION_TYPE             = transaction.toLowerCase();
   const DISPLAY_TRANSACTION          = formatDisplay(TRANSACTION_TYPE);
 

@@ -3,7 +3,6 @@ import { AccountOption } from "res/global/constants";
 
 import { useAccountContext }  from "res/context/AccountContext";  
 import { useExpensesContext } from "res/context/ExpensesContext";
-import { useEffect }          from "react";
 
 export const ExpenseItem = ({name, value, id}) => {
   const {ExpensesOption}                    = AccountOption;
