@@ -1,27 +1,33 @@
 import { ExpenseItem } from "./ExpenseItem";
 import { Random }      from "res/global/utils";
 
-import { useExpensesList }   from "res/states/ExpensesListState";
-import { useAccountContext } from "res/context/AccountContext";
-import { useEffect }         from "react";
+import { useAccountContext }  from "res/context/AccountContext";
+import { useExpensesList }    from "res/states/ExpensesListState";
+import { useExpensesContext } from "res/context/ExpensesContext";
+import { useEffect }          from "react";
 
-const processExpensesList = (account, setExpensesList) => {
-  return () => setExpensesList(account.expenses.map((expense, i)=> {
-    const [name]          = Object.keys(expense);
-    const [value]         = Object.values(expense);
-    const expenseItemKey  = Random.getKey(name);
-    const expenseItemInfo = { name: `${name}`, value: `${value}`, }
-
-    return <ExpenseItem key={expenseItemKey} {...expenseItemInfo} id={i}/>;
-  }));
-};
 
 export const ExpensesList = () => {
   const [expensesList, setExpensesList] = useExpensesList();
   const {account}                       = useAccountContext();
+  const {useExpenseItem}                = useExpensesContext();
+  const {expenseItem}                   = useExpenseItem;
   const expensesLength                  = account.expenses.length;
+  const {isEditing}                     = expenseItem;
 
-  useEffect(processExpensesList(account, setExpensesList), [expensesLength]);
+  const doExpensesList = () => () => {
+    const expensesListRaw = ((expense, i) => {
+      const [name]          = Object.keys(expense);
+      const [value]         = Object.values(expense);
+      const expenseItemKey  = Random.getKey(name);
+      const expenseItemInfo = { name: `${name}`, value: `${value}`, }
+      return <ExpenseItem key={expenseItemKey} {...expenseItemInfo} id={i}/>;
+    });
+
+    setExpensesList(account.expenses.map(expensesListRaw));
+  };
+
+  useEffect(doExpensesList(), [expensesLength, isEditing]);
 
   return(
     <div>

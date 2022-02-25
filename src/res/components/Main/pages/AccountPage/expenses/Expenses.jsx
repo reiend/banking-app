@@ -1,21 +1,23 @@
-import { ExpenseInput }     from "./ExpenseInput";
-import { ExpensesList }     from "./ExpensesList";
-import { ExpensesContext }  from "res/context/ExpensesContext";
+import { EMPTY_REF }       from "res/global/constants"; 
+import { ExpenseInput }    from "./ExpenseInput";
+import { ExpensesList }    from "./ExpensesList";
 
-import { useExpenses } from "res/states/ExpensesState";
-import { useRef }      from "react";
+import { ExpensesContext } from "res/context/ExpensesContext";
+import { useExpenses }      from "res/states/ExpensesState";
+import { useRef }          from "react";
+
 
 export const Expenses = () => {
-  const expenseNameRef            = useRef(null);
-  const expenseValueRef           = useRef(null);
-  const [isEditing, setIsEditing] = useExpenses(false);
-  const expenseInputRef           = {expenseNameRef, expenseValueRef};
-  const useExpenseEdit            = {isEditing, setIsEditing};
+  const expenseNameRef                = useRef(EMPTY_REF);
+  const expenseValueRef               = useRef(EMPTY_REF);
+  const [expenseItem, setExpenseItem] = useExpenses();
+  const expenseInputRef               = {expenseNameRef, expenseValueRef};
+  const useExpenseItem                = {expenseItem, setExpenseItem};
 
   return(
     <section>
       <h3>Expenses</h3>
-      <ExpensesContext.Provider value={{expenseInputRef, useExpenseEdit}}> 
+      <ExpensesContext.Provider value={{expenseInputRef, useExpenseItem}}> 
         <ExpensesList />
         <ExpenseInput />  
       </ExpensesContext.Provider>
