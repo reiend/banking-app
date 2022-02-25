@@ -5,10 +5,10 @@ import { useAccountContext }  from "res/context/AccountContext";
 import { useExpensesContext } from "res/context/ExpensesContext";
 
 export const ExpenseItem = ({name, value, id}) => {
-  const {ExpensesOption}                    = AccountOption;
+  const {ExpensesOption, EDIT_ACCOUNT}      = AccountOption;
   const {EDIT_EXPENSE, PAY_EXPENSE}         = ExpensesOption;
   const {SET_ID}                            = ExpensesOption;
-  const {account, setAccount: setExpenses}  = useAccountContext();
+  const {account, setAccount}               = useAccountContext();
   const {expenseInputRef, expenseItemRef}   = useExpensesContext();
   const {useExpenseItem}                    = useExpensesContext();
 
@@ -17,8 +17,9 @@ export const ExpenseItem = ({name, value, id}) => {
   const doExpenseItemPay = () => {
     const expense        = account.expenses[id];
     const [expenseValue] = Object.values(expense);
-
-    setExpenses({type: PAY_EXPENSE, id, expenseValue});
+    
+    setAccount({type: EDIT_ACCOUNT});
+    setAccount({type: PAY_EXPENSE, id, expenseValue});
   };
 
   const doExpenseItemEdit = () => {
@@ -42,7 +43,7 @@ export const ExpenseItem = ({name, value, id}) => {
     const {DELETE_EXPENSE}     = ExpensesOption;
     
     // process deleting expense
-    setExpenses({type: DELETE_EXPENSE, id})
+    setAccount({type: DELETE_EXPENSE, id})
   };
 
   const onClickExpenseItemDelete = () => doExpenseItemDelete();
