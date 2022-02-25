@@ -1,5 +1,6 @@
-import { PropTypes }    from "res/proptypes/proptypes";
-import { AccountOption } from "res/global/constants";
+import { PropTypes }                 from "res/proptypes/proptypes";
+import { AccountOption, ButtonType } from "res/global/constants";
+import { ExpenseButton }             from "./ExpenseButton";   
 
 import { useAccountContext }  from "res/context/AccountContext";  
 import { useExpensesContext } from "res/context/ExpensesContext";
@@ -8,6 +9,8 @@ export const ExpenseItem = ({name, value, id}) => {
   const {ExpensesOption, EDIT_ACCOUNT}      = AccountOption;
   const {EDIT_EXPENSE, PAY_EXPENSE}         = ExpensesOption;
   const {SET_ID}                            = ExpensesOption;
+  const {ExpenseButtonType}                 = ButtonType;
+  const {PAY, EDIT, DELETE}                 = ExpenseButtonType;
   const {account, setAccount}               = useAccountContext();
   const {expenseInputRef, expenseItemRef}   = useExpensesContext();
   const {useExpenseItem}                    = useExpensesContext();
@@ -50,12 +53,16 @@ export const ExpenseItem = ({name, value, id}) => {
   const onClickExpenseItemEdit   = () => doExpenseItemEdit();
   const onClickExpenseItemPay    = () => doExpenseItemPay();
 
+  const pay    = {title: PAY, onClick: onClickExpenseItemPay}
+  const edit   = {title: EDIT, onClick: onClickExpenseItemEdit}
+  const remove = {title: DELETE, onClick: onClickExpenseItemDelete}
+
   return( 
     <li id={id} ref={expenseItemRef}>
       <span>{name}</span>-<span>{value}</span>
-      <button onClick={onClickExpenseItemPay}>pay</button>
-      <button onClick={onClickExpenseItemEdit}>edit</button>
-      <button onClick={onClickExpenseItemDelete}>X</button>
+      <ExpenseButton {...pay}/>
+      <ExpenseButton {...edit}/>
+      <ExpenseButton {...remove}/>
     </li>
   );
 };

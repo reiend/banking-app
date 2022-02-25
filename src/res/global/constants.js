@@ -44,8 +44,13 @@ export const Quantity = {
 
 export const ButtonType = {
   ADD:    "add",
-  EDIT:   "save",
+  SAVE:   "save",
   CANCEL: "cancel",
+  ExpenseButtonType: {
+    PAY:    "pay",
+    EDIT:   "edit",
+    DELETE: "X",
+  },
 };
 
 export const EditingChoices = {

@@ -2,13 +2,14 @@ import { Input }                                  from "res/global/components";
 import { AccountOption, ExpenseInputName }        from "res/global/constants";
 import { ResetValue, ButtonType, EditingChoices } from "res/global/constants";
 import { CurrencyUtils }                          from "res/global/utils";
+import { ExpenseButton }                          from "./ExpenseButton";
 
 import { useAccountContext }  from "res/context/AccountContext";
 import { useExpensesContext } from "res/context/ExpensesContext";
 
 export const ExpenseInput = () => {
   const {EXPENSE_NAME, EXPENSE_VALUE} = ExpenseInputName;
-  const {ADD, EDIT, CANCEL}           = ButtonType;
+  const {ADD, SAVE, CANCEL}           = ButtonType;
 
   const {expenseInputRef, useExpenseItem}  = useExpensesContext();
   const {setAccount}                       = useAccountContext();
@@ -51,7 +52,7 @@ export const ExpenseInput = () => {
     // Expense options
     switch(DO) {
       case ADD:     setAddExpense();  break;
-      case EDIT:    editAccount(); setEditExpense(); break;
+      case SAVE:    editAccount(); setEditExpense(); break;
       case CANCEL:  cancelEdit();     break;
       default:      break;
     }
@@ -68,17 +69,20 @@ export const ExpenseInput = () => {
     <div>
       {!isEditing && <h4>List new Expense</h4>}
       {isEditing && <h4>Editing Expense</h4>}
+
       <div>
         <label htmlFor={EXPENSE_NAME}>Expense: </label>
         <Input name={EXPENSE_NAME} ref={expenseNameRef}/>   
       </div>
+
       <div>
         <label htmlFor={EXPENSE_VALUE}>Value: </label>
         <Input name={EXPENSE_VALUE} ref={expenseValueRef}/>
       </div>
-      {!isEditing && <button {...doButton(ADD)}>{ADD}</button>}
-      {isEditing  && <button {...doButton(EDIT)}>{EDIT}</button>}
-      {isEditing  && <button {...doButton(CANCEL)}>{CANCEL}</button>}
+
+      {!isEditing && <ExpenseButton {...doButton(ADD)}/>}
+      {isEditing  && <ExpenseButton {...doButton(SAVE)}/>}
+      {isEditing  && <ExpenseButton {...doButton(CANCEL)}/>}
     </div>
   );
 };

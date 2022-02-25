@@ -6,20 +6,35 @@ const AccountContextProptypes = {
 };
 
 const TransactionInputProptypes = {transaction: Proptype.string};
+
 const TransactionProptypes = {
   WITHDRAW: Proptype.string,
   DEPOSIT:  Proptype.string,
 };
 
 const ExpensesContextPropTypes = {
-  chilren:  Proptype.array,
-  value:    Proptype.object,
+  chilren: Proptype.array,
+  value:   Proptype.object,
 };
 
-const ExpenseItemPropType = {
+const ExpenseItemPropTypes = {
   name:  Proptype.string,
   value: Proptype.number,
   id:    Proptype.number,
+};
+
+const ExpenseButtonPropTypes = {
+  title:   Proptype.string,
+  onClick: Proptype.func,
+};
+
+const ButtonTypePropTypes = {
+  title:   Proptype.string,
+  onClick: Proptype.func,
+};
+
+const InputPropTypes = {
+  name: Proptype.string,
 };
 
 export const PropTypes = {
@@ -27,7 +42,9 @@ export const PropTypes = {
   TransactionProptypes,
   TransactionInputProptypes,
   ExpensesContextPropTypes,
-  ExpenseItemPropType,
+  ExpenseItemPropTypes,
+  ExpenseButtonPropTypes,
+  ButtonTypePropTypes,
+  InputPropTypes,
 };
-
 
