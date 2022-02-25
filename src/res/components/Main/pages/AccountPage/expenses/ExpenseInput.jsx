@@ -11,53 +11,54 @@ export const ExpenseInput = () => {
   const {ADD, EDIT, CANCEL}           = ButtonType;
 
   const {expenseInputRef, useExpenseItem}  = useExpensesContext();
+  const {setAccount}                       = useAccountContext();
   const {expenseItem, setExpenseItem}      = useExpenseItem;
-  const {setAccount: setExpenses}          = useAccountContext();
   const {expenseNameRef, expenseValueRef}  = expenseInputRef;
   const {isEditing}                        = expenseItem;
 
   const doExpense = (event) => {
-      const {ExpensesOption}                    = AccountOption;
-      const {ADD_EXPENSE, EDIT_EXPENSE}         = ExpensesOption;
-      const {CANCEL_EDIT_EXPENSE: CANCEL}       = ExpensesOption;
-      const {RESET_STRING_VALUE}                = ResetValue;
-      const {NO}                                = EditingChoices;
-      const {isInvalidCurrency, currencyFormat} = CurrencyUtils;
+    const {ExpensesOption, EDIT_ACCOUNT}      = AccountOption;
+    const {ADD_EXPENSE, EDIT_EXPENSE}         = ExpensesOption;
+    const {CANCEL_EDIT_EXPENSE: CANCEL}       = ExpensesOption;
+    const {RESET_STRING_VALUE}                = ResetValue;
+    const {NO}                                = EditingChoices;
+    const {isInvalidCurrency, currencyFormat} = CurrencyUtils;
 
-      const expenseNameObject  = expenseNameRef.current;
-      const expenseValueObject = expenseValueRef.current;
-      const value              = expenseValueObject.value;
-      const expenseName        = expenseNameObject.value;
-      const expenseValue       = currencyFormat(value);
+    const expenseNameObject  = expenseNameRef.current;
+    const expenseValueObject = expenseValueRef.current;
+    const value              = expenseValueObject.value;
+    const expenseName        = expenseNameObject.value;
+    const expenseValue       = currencyFormat(value);
 
-      if(isInvalidCurrency(expenseValue)) {
-        expenseValueObject.value = RESET_STRING_VALUE;
-      }
-
-      const editedExpense     = expenseItem.id;
-      const expense           = {[expenseName]: expenseValue};
-      const setExpensesParams = {expense, expenseValue, id: editedExpense};
-      const DO                = event.target.name;
-
-      // Expense operation
-      const add    = {...setExpensesParams, type: ADD_EXPENSE};
-      const edit   = {...setExpensesParams, type: EDIT_EXPENSE};
-    
-      const cancelEdit          = () => setExpenseItem({type: CANCEL});
-      const setAddExpense       = () => setExpenses({...add});
-      const setEditExpense      = () => setExpenses({...edit}); cancelEdit();
-      
-      // Expense options
-      switch(DO) {
-        case ADD:     setAddExpense();  break;
-        case EDIT:    setEditExpense(); break;
-        case CANCEL:  cancelEdit();     break;
-        default:      break;
-      }
-
-      // Reset input
-      expenseNameObject.value  = RESET_STRING_VALUE;
+    if(isInvalidCurrency(expenseValue)) {
       expenseValueObject.value = RESET_STRING_VALUE;
+    }
+
+    const editedExpense     = expenseItem.id;
+    const expense           = {[expenseName]: expenseValue};
+    const setExpensesParams = {expense, expenseValue, id: editedExpense};
+    const DO                = event.target.name;
+
+    // Expense operation
+    const add    = {...setExpensesParams, type: ADD_EXPENSE};
+    const edit   = {...setExpensesParams, type: EDIT_EXPENSE};
+  
+    const cancelEdit          = () => setExpenseItem({type: CANCEL});
+    const setAddExpense       = () => setAccount({...add});
+    const setEditExpense      = () => setAccount({...edit}); cancelEdit();
+    const editAccount         = () => setAccount({type: EDIT_ACCOUNT});
+
+    // Expense options
+    switch(DO) {
+      case ADD:     setAddExpense();  break;
+      case EDIT:    editAccount(); setEditExpense(); break;
+      case CANCEL:  cancelEdit();     break;
+      default:      break;
+    }
+
+    // Reset input
+    expenseNameObject.value  = RESET_STRING_VALUE;
+    expenseValueObject.value = RESET_STRING_VALUE;
   };
 
   const onClickExpenseDo  = (event) => doExpense(event);

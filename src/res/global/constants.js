@@ -1,14 +1,17 @@
 export const AccountOption = {
+  EDIT_ACCOUNT: "EDIT_ACCOUNT",
   TransactionOption: {
     WITHDRAW: "WITHDRAW",
     DEPOSIT:  "DEPOSIT",
   },
   ExpensesOption: {
-    ADD_EXPENSE:         "ADD_EXPENSE",
-    DELETE_EXPENSE:      "DELETE_EXPENSE",
-    EDIT_EXPENSE:        "EDIT_EXPENSE",
-    CANCEL_EDIT_EXPENSE: "CANCEL_EDIT_EXPENSE",
-    SET_ID:              "SET_ID",
+    ADD_EXPENSE:          "ADD_EXPENSE",
+    DELETE_EXPENSE:       "DELETE_EXPENSE",
+    EDIT_EXPENSE:         "EDIT_EXPENSE",
+    PAY_EXPENSE:          "PAY_EXPENSE",
+    CANCEL_EDIT_EXPENSE:  "CANCEL_EDIT_EXPENSE",
+    UPDATE_TOTAL_EXPENSE: "UPDATE_TOTAL_EXPENSE",
+    SET_ID:               "SET_ID",
   },
 };
 
