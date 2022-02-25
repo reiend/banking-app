@@ -12,8 +12,8 @@ export const ExpensesList = () => {
   const {account}                       = useAccountContext();
   const {useExpenseItem}                = useExpensesContext();
   const {expenseItem}                   = useExpenseItem;
-  const expensesLength                  = account.expenses.length;
   const {isEditing}                     = expenseItem;
+  const expensesLength                  = account.expenses.length;
 
   const doExpensesList = () => () => {
     const expensesListRaw = ((expense, i) => {
