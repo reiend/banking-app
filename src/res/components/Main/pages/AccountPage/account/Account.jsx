@@ -9,7 +9,14 @@ export const Account = () => {
   const {EXPENSE_VALUE}        = ExpenseInfo;
 
   const {account, setAccount: setExpenses} = useAccountContext();
-  const {isEdited}                         = account;
+  const {
+    isEdited, 
+    id, 
+    firstname, 
+    lastname, 
+    balance,
+    totalExpenses,
+  } = account;
   
   // Update Total Expenses display
   useEffect(() => {
@@ -24,10 +31,10 @@ export const Account = () => {
   return(
     <section>
       <h2>Account</h2>
-      <div>ID: {account.id}</div> 
-      <div>Name: {account.firstname} {account.lastname}</div> 
-      <div>Balance: {account.balance}</div>
-      <div>Total Expenses: {account.totalExpenses}</div>
+      <div>ID: {id}</div> 
+      <div>Name: {firstname} {lastname}</div> 
+      <div>Balance: {balance}</div>
+      <div>Total Expenses: {totalExpenses}</div>
     </section>
   );
 };
