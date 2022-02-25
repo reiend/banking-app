@@ -8,6 +8,7 @@ export const AccountOption = {
     DELETE_EXPENSE:      "DELETE_EXPENSE",
     EDIT_EXPENSE:        "EDIT_EXPENSE",
     CANCEL_EDIT_EXPENSE: "CANCEL_EDIT_EXPENSE",
+    SET_ID:              "SET_ID",
   },
 };
 

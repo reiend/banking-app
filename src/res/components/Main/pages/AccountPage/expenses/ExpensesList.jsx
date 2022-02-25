@@ -1,15 +1,19 @@
 import { ExpenseItem } from "./ExpenseItem";
 import { Random }      from "res/global/utils";
 
-import { useExpensesList }   from "res/states/ExpensesListState";
-import { useAccountContext } from "res/context/AccountContext";
-import { useEffect }         from "react";
+import { useAccountContext }  from "res/context/AccountContext";
+import { useExpensesList }    from "res/states/ExpensesListState";
+import { useExpensesContext } from "res/context/ExpensesContext";
+import { useEffect }          from "react";
 
 
 export const ExpensesList = () => {
   const [expensesList, setExpensesList] = useExpensesList();
   const {account}                       = useAccountContext();
+  const {useExpenseItem}                = useExpensesContext();
+  const {expenseItem}                   = useExpenseItem;
   const expensesLength                  = account.expenses.length;
+  const {isEditing}                     = expenseItem;
 
   const doExpensesList = () => () => {
     const expensesListRaw = ((expense, i) => {
@@ -23,7 +27,7 @@ export const ExpensesList = () => {
     setExpensesList(account.expenses.map(expensesListRaw));
   };
 
-  useEffect(doExpensesList(), [expensesLength]);
+  useEffect(doExpensesList(), [expensesLength, isEditing]);
 
   return(
     <div>
