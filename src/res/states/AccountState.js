@@ -15,7 +15,6 @@ export const initialAccount = () => ({
 });
 
 const accountReducer = (previousState, attribute) => {
-  const {EDIT_ACCOUNT}                      = AccountOption;
   const {TransactionOption, ExpensesOption} = AccountOption;
   const {WITHDRAW, DEPOSIT}                 = TransactionOption;
   const {ADD_EXPENSE, DELETE_EXPENSE}       = ExpensesOption;
@@ -54,14 +53,19 @@ const accountReducer = (previousState, attribute) => {
     ...previousState, balance: expenseBalance, totalExpenses: payExpenses
   };
 
-  // Do Account operation
-  const doWithdraw    = () => ({...balanceUpdateWithdraw});
-  const doDeposit     = () => ({...balanceUpdateDeposit});
+  // Do transaction operation
+  const doWithdraw = () => ({...balanceUpdateWithdraw});
+  const doDeposit  = () => ({...balanceUpdateDeposit});
+
+  // Do Expenses opeartion
   const doAdd         = () => {addExpense(); return ({...totalExpensesPay})};
   const doPay         = () => {deleteExpense(); return ({...balanceUpdatePay})};
-
   const doEditExpense = () => {addEditExpense(); return ({...expensesUpdate})};
   const doDelete      = () => {deleteExpense(); return ({...expensesUpdate})};
+  
+  // Do Total Expenses operation
+  const doUpdateTotalExpense = () => ({...totalExpensesUpdate});
+  const doEditTotalExpenses  = () => ({...previousState, totalExpenses});
 
   // Acount options
   switch(type) {
@@ -71,9 +75,8 @@ const accountReducer = (previousState, attribute) => {
     case PAY_EXPENSE:          return doPay();
     case DELETE_EXPENSE:       return doDelete();
     case EDIT_EXPENSE:         return doEditExpense();
-    case UPDATE_TOTAL_EXPENSE: return {...totalExpensesUpdate};
-    case EDIT_ACCOUNT:         return {...previousState};
-    case EDIT_TOTAL_EXPENSE:   return {...previousState, totalExpenses};
+    case UPDATE_TOTAL_EXPENSE: return doUpdateTotalExpense();
+    case EDIT_TOTAL_EXPENSE:   return doEditTotalExpenses();
     default:                   throw new Error(ACCOUNT_OPTION_MESSAGE_ERROR);
   }
 };
