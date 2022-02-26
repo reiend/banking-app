@@ -6,7 +6,7 @@ import { useAccountContext }  from "res/context/AccountContext";
 import { useExpensesContext } from "res/context/ExpensesContext";
 
 export const ExpenseItem = ({name, value, id}) => {
-  const {ExpensesOption, EDIT_ACCOUNT}      = AccountOption;
+  const {ExpensesOption}                    = AccountOption;
   const {EDIT_EXPENSE, PAY_EXPENSE}         = ExpensesOption;
   const {SET_ID}                            = ExpensesOption;
   const {ExpenseButtonType}                 = ButtonType;
@@ -21,7 +21,6 @@ export const ExpenseItem = ({name, value, id}) => {
     const expense        = account.expenses[id];
     const [expenseValue] = Object.values(expense);
     
-    setAccount({type: EDIT_ACCOUNT});
     setAccount({type: PAY_EXPENSE, id, expenseValue});
   };
 
@@ -35,8 +34,8 @@ export const ExpenseItem = ({name, value, id}) => {
     expenseNameObject.value                 = expenseName;
     expenseValueObject.value                = expenseValue;
     
-    setExpenseItem({type: EDIT_EXPENSE});
     setExpenseItem({type: SET_ID, id});
+    setExpenseItem({type: EDIT_EXPENSE});
 
     expenseNameRef.current.focus();
   };

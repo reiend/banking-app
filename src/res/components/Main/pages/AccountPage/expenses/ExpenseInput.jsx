@@ -1,5 +1,6 @@
 import { Input }                                  from "res/global/components";
 import { AccountOption, ExpenseInputName }        from "res/global/constants";
+import { ExpenseInfo }                            from "res/global/constants";
 import { ResetValue, ButtonType, EditingChoices } from "res/global/constants";
 import { CurrencyUtils }                          from "res/global/utils";
 import { ExpenseButton }                          from "./ExpenseButton";
@@ -12,15 +13,15 @@ export const ExpenseInput = () => {
   const {ADD, SAVE, CANCEL}           = ButtonType;
 
   const {expenseInputRef, useExpenseItem}  = useExpensesContext();
-  const {setAccount}                       = useAccountContext();
+  const {account, setAccount}              = useAccountContext();
   const {expenseItem, setExpenseItem}      = useExpenseItem;
   const {expenseNameRef, expenseValueRef}  = expenseInputRef;
   const {isEditing}                        = expenseItem;
 
   const doExpense = (event) => {
-    const {ExpensesOption, EDIT_ACCOUNT}      = AccountOption;
+    const {ExpensesOption}                    = AccountOption;
     const {ADD_EXPENSE, EDIT_EXPENSE}         = ExpensesOption;
-    const {CANCEL_EDIT_EXPENSE: CANCEL}       = ExpensesOption;
+    const {CANCEL_EDIT_EXPENSE: CANCEL_EDIT}  = ExpensesOption;
     const {RESET_STRING_VALUE}                = ResetValue;
     const {NO}                                = EditingChoices;
     const {isInvalidCurrency, currencyFormat} = CurrencyUtils;
@@ -39,20 +40,26 @@ export const ExpenseInput = () => {
     const expense           = {[expenseName]: expenseValue};
     const setExpensesParams = {expense, expenseValue, id: editedExpense};
     const DO                = event.target.name;
-
+    
     // Expense operation
-    const add    = {...setExpensesParams, type: ADD_EXPENSE};
-    const edit   = {...setExpensesParams, type: EDIT_EXPENSE};
-  
-    const cancelEdit          = () => setExpenseItem({type: CANCEL});
-    const setAddExpense       = () => setAccount({...add});
-    const setEditExpense      = () => setAccount({...edit}); cancelEdit();
-    const editAccount         = () => setAccount({type: EDIT_ACCOUNT});
+    const add            = {...setExpensesParams, type: ADD_EXPENSE};
+    const edit           = {...setExpensesParams, type: EDIT_EXPENSE};
+
+    const cancelEdit         = () => setExpenseItem({type: CANCEL_EDIT});
+    const setAddExpense      = () => setAccount({...add});
+    const setEditExpense     = () => setAccount({...edit}); cancelEdit();
+    const updateTotalExpense = () => {
+      const totalExpenses = account
+      .expenses
+        .map((expense) => Object.values(expense)[ExpenseInfo.EXPENSE_VALUE])
+        .reduce((totalExpenses, nextExpense) => totalExpenses + nextExpense);
+      setAccount({type: "EDIT_TOTAL_EXPENSE", totalExpenses});
+    };
 
     // Expense options
     switch(DO) {
       case ADD:     setAddExpense();  break;
-      case SAVE:    editAccount(); setEditExpense(); break;
+      case SAVE:    setEditExpense(); updateTotalExpense(); break;
       case CANCEL:  cancelEdit();     break;
       default:      break;
     }

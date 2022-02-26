@@ -6,11 +6,11 @@ import { useExpensesList }    from "res/states/ExpensesListState";
 import { useExpensesContext } from "res/context/ExpensesContext";
 import { useEffect }          from "react";
 
-
 export const ExpensesList = () => {
   const [expensesList, setExpensesList] = useExpensesList();
   const {account}                       = useAccountContext();
   const {useExpenseItem}                = useExpensesContext();
+  const {balance}                       = account;
   const {expenseItem}                   = useExpenseItem;
   const {isEditing}                     = expenseItem;
   const expensesLength                  = account.expenses.length;
@@ -27,7 +27,7 @@ export const ExpensesList = () => {
     setExpensesList(account.expenses.map(expensesListRaw));
   };
 
-  useEffect(doExpensesList(), [expensesLength, isEditing]);
+  useEffect(doExpensesList(), [expensesLength, isEditing, balance]);
 
   return(
     <div>

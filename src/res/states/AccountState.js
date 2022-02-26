@@ -1,5 +1,5 @@
-import { AccountOption, EditingChoices} from "res/global/constants";
-import { ErrorMessage, Quantity }       from "res/global/constants";
+import { AccountOption }          from "res/global/constants";
+import { ErrorMessage, Quantity } from "res/global/constants";
 
 import { useReducer } from "react";
 
@@ -21,9 +21,9 @@ const accountReducer = (previousState, attribute) => {
   const {ADD_EXPENSE, DELETE_EXPENSE}       = ExpensesOption;
   const {EDIT_EXPENSE, PAY_EXPENSE}         = ExpensesOption;
   const {UPDATE_TOTAL_EXPENSE}              = ExpensesOption;
+  const {EDIT_TOTAL_EXPENSE}                = ExpensesOption;
   const {ACCOUNT_OPTION_MESSAGE_ERROR}      = ErrorMessage;
   const {ONE}                               = Quantity;
-  const {NO, YES}                           = EditingChoices;
 
   const { // -->
     type, 
@@ -51,9 +51,7 @@ const accountReducer = (previousState, attribute) => {
   const expensesUpdate        = {...previousState};
   const totalExpensesUpdate   = {...previousState, totalExpenses};
   const balanceUpdatePay      = { // -->
-    ...previousState, 
-    balance:          expenseBalance, 
-    totalExpenses:    payExpenses
+    ...previousState, balance: expenseBalance, totalExpenses: payExpenses
   };
 
   // Do Account operation
@@ -61,6 +59,7 @@ const accountReducer = (previousState, attribute) => {
   const doDeposit     = () => ({...balanceUpdateDeposit});
   const doAdd         = () => {addExpense(); return ({...totalExpensesPay})};
   const doPay         = () => {deleteExpense(); return ({...balanceUpdatePay})};
+
   const doEditExpense = () => {addEditExpense(); return ({...expensesUpdate})};
   const doDelete      = () => {deleteExpense(); return ({...expensesUpdate})};
 
@@ -72,8 +71,9 @@ const accountReducer = (previousState, attribute) => {
     case PAY_EXPENSE:          return doPay();
     case DELETE_EXPENSE:       return doDelete();
     case EDIT_EXPENSE:         return doEditExpense();
-    case UPDATE_TOTAL_EXPENSE: return {...totalExpensesUpdate, isEdited: NO};
-    case EDIT_ACCOUNT:         return {...previousState, isEdited: YES};
+    case UPDATE_TOTAL_EXPENSE: return {...totalExpensesUpdate};
+    case EDIT_ACCOUNT:         return {...previousState};
+    case EDIT_TOTAL_EXPENSE:   return {...previousState, totalExpenses};
     default:                   throw new Error(ACCOUNT_OPTION_MESSAGE_ERROR);
   }
 };
