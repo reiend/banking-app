@@ -11,6 +11,7 @@ export const AccountOption = {
     PAY_EXPENSE:          "PAY_EXPENSE",
     CANCEL_EDIT_EXPENSE:  "CANCEL_EDIT_EXPENSE",
     UPDATE_TOTAL_EXPENSE: "UPDATE_TOTAL_EXPENSE",
+    EDIT_TOTAL_EXPENSE:  "EDIT_TOTAL_EXPENSE",
     SET_ID:               "SET_ID",
   },
 };

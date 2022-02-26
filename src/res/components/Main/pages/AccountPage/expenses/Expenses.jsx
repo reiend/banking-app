@@ -1,11 +1,10 @@
 import { EMPTY_REF }       from "res/global/constants"; 
 import { ExpenseInput }    from "./ExpenseInput";
 import { ExpensesList }    from "./ExpensesList";
-
 import { ExpensesContext } from "res/context/ExpensesContext";
-import { useExpenses }      from "res/states/ExpensesState";
-import { useRef }          from "react";
 
+import { useExpenses }     from "res/states/ExpensesState";
+import { useRef }          from "react";
 
 export const Expenses = () => {
   const expenseNameRef                = useRef(EMPTY_REF);
