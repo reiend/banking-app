@@ -1,5 +1,6 @@
-import { ExpenseItem } from "./ExpenseItem";
-import { Random }      from "res/global/utils";
+import { ExpenseItem }      from "./ExpenseItem";
+import { Random }           from "res/global/utils";
+import { ExpensesListInfo } from "res/global/constants";
 
 import { useAccountContext }  from "res/context/AccountContext";
 import { useExpensesList }    from "res/states/ExpensesListState";
@@ -7,6 +8,8 @@ import { useExpensesContext } from "res/context/ExpensesContext";
 import { useEffect }          from "react";
 
 export const ExpensesList = () => {
+  const {ZERO} = ExpensesListInfo;
+
   const [expensesList, setExpensesList] = useExpensesList();
   const {account}                       = useAccountContext();
   const {useExpenseItem}                = useExpensesContext();
@@ -28,11 +31,13 @@ export const ExpensesList = () => {
   };
 
   useEffect(doExpensesList(), [expensesLength, isEditing, balance]);
+  const hasExpenses = account.expenses.length !== ZERO;
 
   return(
     <div>
       <h4>List of Expenses</h4>
-      <ul>{expensesList}</ul>
+      {hasExpenses  && <ul>{expensesList}</ul>}
+      {!hasExpenses && <h5>No Expenses yet</h5> }
     </div>
   );
 };

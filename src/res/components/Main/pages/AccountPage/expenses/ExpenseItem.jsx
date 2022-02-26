@@ -43,9 +43,12 @@ export const ExpenseItem = ({name, value, id}) => {
   const doExpenseItemDelete = () => {
     const {ExpensesOption}     = AccountOption;
     const {DELETE_EXPENSE}     = ExpensesOption;
+
+    const expense        = account.expenses[id];
+    const [expenseValue] = Object.values(expense);
     
     // process deleting expense
-    setAccount({type: DELETE_EXPENSE, id})
+    setAccount({type: DELETE_EXPENSE, id, expenseValue})
   };
 
   const onClickExpenseItemDelete = () => doExpenseItemDelete();

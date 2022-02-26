@@ -48,6 +48,7 @@ const accountReducer = (previousState, attribute) => {
   const balanceUpdateDeposit  = {...previousState, balance: depositBalance};
   const totalExpensesPay      = {...previousState, totalExpenses: expensesTotal};
   const expensesUpdate        = {...previousState};
+  const updateTotalExpense    = {...previousState, totalExpenses: payExpenses};
   const totalExpensesUpdate   = {...previousState, totalExpenses};
   const balanceUpdatePay      = { // -->
     ...previousState, balance: expenseBalance, totalExpenses: payExpenses
@@ -57,15 +58,15 @@ const accountReducer = (previousState, attribute) => {
   const doWithdraw = () => ({...balanceUpdateWithdraw});
   const doDeposit  = () => ({...balanceUpdateDeposit});
 
-  // Do Expenses opeartion
-  const doAdd         = () => {addExpense(); return ({...totalExpensesPay})};
-  const doPay         = () => {deleteExpense(); return ({...balanceUpdatePay})};
-  const doEditExpense = () => {addEditExpense(); return ({...expensesUpdate})};
-  const doDelete      = () => {deleteExpense(); return ({...expensesUpdate})};
+  // Do Expenses operation
+  const doAdd    = () => {addExpense(); return ({...totalExpensesPay})};
+  const doPay    = () => {deleteExpense(); return ({...balanceUpdatePay})};
+  const doEdit   = () => {addEditExpense(); return ({...expensesUpdate})};
+  const doDelete = () => {deleteExpense(); return ({...updateTotalExpense})};
   
   // Do Total Expenses operation
   const doUpdateTotalExpense = () => ({...totalExpensesUpdate});
-  const doEditTotalExpenses  = () => ({...previousState, totalExpenses});
+  const doEditTotalExpense   = () => ({...previousState, totalExpenses});
 
   // Acount options
   switch(type) {
@@ -74,9 +75,9 @@ const accountReducer = (previousState, attribute) => {
     case ADD_EXPENSE:          return doAdd();
     case PAY_EXPENSE:          return doPay();
     case DELETE_EXPENSE:       return doDelete();
-    case EDIT_EXPENSE:         return doEditExpense();
+    case EDIT_EXPENSE:         return doEdit();
     case UPDATE_TOTAL_EXPENSE: return doUpdateTotalExpense();
-    case EDIT_TOTAL_EXPENSE:   return doEditTotalExpenses();
+    case EDIT_TOTAL_EXPENSE:   return doEditTotalExpense();
     default:                   throw new Error(ACCOUNT_OPTION_MESSAGE_ERROR);
   }
 };
