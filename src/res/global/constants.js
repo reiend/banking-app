@@ -63,6 +63,10 @@ export const ExpenseInfo = {
   EXPENSE_VALUE: 0,
 };
 
+export const ExpensesListInfo = {
+  ZERO: 0,
+};
+
 const EMPTY_REF    = null;
 const FIRST_LETTER = 0;
 const MAX          = 10e7;
