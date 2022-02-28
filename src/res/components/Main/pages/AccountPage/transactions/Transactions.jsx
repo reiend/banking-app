@@ -3,7 +3,7 @@ import { PropTypes }        from "res/proptypes/proptypes";
 
 export const Transactions = ({WITHDRAW, DEPOSIT}) => {
   return(
-    <section>
+    <section className="">
       <h3>Transaction</h3>
       <TransactionInput transaction={DEPOSIT}/>
       <TransactionInput transaction={WITHDRAW}/>

@@ -11,7 +11,7 @@ export const AccountPage = () => {
   const [account, setAccount] = useAccount({});
 
   return (
-    <main>
+    <main className="">
       <AccountContext.Provider value={{account, setAccount}}>
         <Account/>
         <Transactions {...TransactionOption}/>   

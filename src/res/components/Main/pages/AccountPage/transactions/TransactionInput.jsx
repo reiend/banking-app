@@ -31,7 +31,7 @@ export const TransactionInput = ({transaction}) => {
     inputRef.current.value = RESET_STRING_VALUE;
   };
 
-  const onClickTransaction   = () => processTransaction();
+  const onClickTransaction = () => processTransaction();
 
   return (
     <div>
