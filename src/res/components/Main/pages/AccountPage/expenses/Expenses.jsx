@@ -14,7 +14,7 @@ export const Expenses = () => {
   const useExpenseItem                = {expenseItem, setExpenseItem};
 
   return(
-    <section>
+    <section className="">
       <h3>Expenses</h3>
       <ExpensesContext.Provider value={{expenseInputRef, useExpenseItem}}> 
         <ExpensesList />

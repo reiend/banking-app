@@ -1,13 +1,13 @@
 import { Fragment }            from "react";
-import { Main }                from "./res/components/Main/Main";
+import { Main }                from "res/components/Main/Main";
+import { Header }              from "res/components/Header/Header";
 
 function App() {
   return (
-      <Fragment>
-          <section className="section-one">
-              <Main />
-          </section>
-      </Fragment>
+    <Fragment>
+      <Header/>
+      <Main/>
+    </Fragment>
   );
 }
 

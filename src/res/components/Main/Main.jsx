@@ -1,12 +1,10 @@
 import { AccountPage } from "./pages/AccountPage/AccountPage";
 
-import "res/styles/Main.scss";
-
 export const Main = () => {
-    return (
-        <div className="">
-          <AccountPage/>
-        </div>
-    );
+  return (
+    <div id="main">
+      <AccountPage/>
+    </div>
+  );
 };
 

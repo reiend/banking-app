@@ -35,9 +35,10 @@ export const ExpensesList = () => {
 
   return(
     <div>
-      <h4>List of Expenses</h4>
+      {hasExpenses  && <h4>List of Expenses</h4>}
       {hasExpenses  && <ul>{expensesList}</ul>}
-      {!hasExpenses && <h5>No Expenses yet</h5> }
+
+      {!hasExpenses && <h4>No Expenses yet</h4> }
     </div>
   );
 };

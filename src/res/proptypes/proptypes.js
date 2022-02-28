@@ -37,6 +37,10 @@ const InputPropTypes = {
   name: Proptype.string,
 };
 
+const SearchIconPropTypes = {
+  className: Proptype.string,
+};
+
 export const PropTypes = {
   AccountContextProptypes,
   TransactionProptypes,
@@ -46,5 +50,6 @@ export const PropTypes = {
   ExpenseButtonPropTypes,
   ButtonTypePropTypes,
   InputPropTypes,
+  SearchIconPropTypes,
 };
 
