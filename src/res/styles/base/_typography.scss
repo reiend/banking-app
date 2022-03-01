@@ -1,0 +1,22 @@
+.t {
+  /* padding  */
+  /* padding on top, right, bottom, left */
+  &-p {
+    @for $i from 1 through 10 {
+      &-#{$i} {
+        padding:                    $i * 0.25rem;
+      }
+    }
+
+    /* padding on top and bottom */
+    &-x {
+      @for $i from 1 through 10 {
+        &-#{$i} {
+          padding:                  $i * 0.25rem;
+        }
+      }
+    }
+  }
+
+  /* end ofpadding  */
+}

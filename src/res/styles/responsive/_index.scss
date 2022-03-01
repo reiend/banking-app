@@ -1,69 +1,92 @@
-$screen-xs-min:  600px;
-$screen-s-min:   600px;
-$screen-m-min:   800px;
-$screen-l-min:   950px;
-$screen-xl-min:  1200px;
-$screen-xxl-min: 1400px;
+/* base 16 */
+$s-screen-min:                  37.5em;     // 600px
+$m-screen-min:                  50em;       // 800px
+$l-screen-min:                  68.75em;    // 1100px
+$xl-screen-min:                 81.250em;   // 1300px
+$xxl-screen-min:                93.750em;   // 1500px
 
-@mixin mobile {  
-  @media only screen and (max-width: $screen-xs-min) {
+$screen-min:                    0px;
+$s-screen:                      600px;
+$m-screen:                      800px;
+$l-screen:                      1100px;
+$xl-screen:                     1300px;
+$xxl-screen:                    1500px;
+$screen-max:                    1700px;
+
+
+@mixin xs {  
+  @media only screen and (max-width: $s-screen-min) {
     @content;
   }
 }
 
-@mixin tablet-extend {  
-  @media only screen and (min-width: $screen-s-min) {
+@mixin s-e {  
+  @media only screen and (min-width: $s-screen-min) {
     @content;
   }
 }
 
-@mixin tablet {  
+@mixin s {  
   @media only screen 
-  and (min-width: $screen-s-min) 
-  and (max-width: $screen-m-min){
+  and (min-width: $s-screen-min) 
+  and (max-width: $m-screen-min){
     @content;
   }
 }
 
-@mixin laptop-extend {  
+@mixin m-e {  
   @media only screen 
-  and (min-width: $screen-m-min) {
+  and (min-width: $m-screen-min) {
     @content;
   }
 }
 
-@mixin laptop {  
+@mixin m {  
   @media only screen 
-  and (min-width: $screen-m-min) 
-  and (max-width: $screen-l-min){
+  and (min-width: $m-screen-min) 
+  and (max-width: $l-screen-min){
     @content;
   }
 }
 
-@mixin desktop-extend {  
-  @media only screen and (min-width: $screen-l-min) {
+@mixin l-e {  
+  @media only screen and (min-width: $l-screen-min) {
     @content;
   }
 }
 
-@mixin desktop {  
+@mixin l {  
   @media only screen 
-  and (min-width: $screen-l-min) 
-  and (max-width: $screen-xl-min){
+  and (min-width: $l-screen-min) 
+  and (max-width: $xl-screen-min){
     @content;
   }
 }
 
-@mixin large-devices {  
+@mixin xl-e {  
+  @media only screen and (min-width: $xl-screen-min) {
+    @content;
+  }
+}
+
+@mixin xl {  
   @media only screen 
-  and (min-width: $screen-xl-min) 
-  and (max-width: $screen-xxl-min) {
+  and (min-width: $xl-screen-min) 
+  and (max-width: $xxl-screen-min) {
     @content;
   }
 }
 
-@mixin large-devices {  
-  @media only screen and (min-width: $screen-xl-min) {
+@mixin xxl {  
+  @media only screen
+  and (min-width: $xxl-screen-min) 
+  and (max-width: $screen-max) {
+    @content;
+  }
+}
+
+@mixin xxl-e {  
+  @media only screen and (min-width: $xxl-screen-min) {
     @content;
   }
 }
