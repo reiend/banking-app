@@ -11,7 +11,7 @@ export const Transactions = ({WITHDRAW, DEPOSIT}) => {
   );
 };
 
-Transaction.propTypes = {
+Transactions.propTypes = {
   WITHDRAW: Proptype.string,
   DEPOSIT:  Proptype.string,
 };
