@@ -1,5 +1,5 @@
+import Proptype                  from "prop-types";
 import { ResetValue, EMPTY_REF } from "res/global/constants";
-import { PropTypes }             from "res/proptypes/proptypes"
 import { Input }                 from "res/global/components";
 import { CurrencyUtils }         from "res/global/utils";
 
@@ -42,6 +42,5 @@ export const TransactionInput = ({transaction}) => {
   );
 };
 
-const {TransactionInputProptypes} = PropTypes;
-TransactionInput.propTypes        = { ...TransactionInputProptypes };
 
+TransactionInput.protoTypes = {transaction: Proptype.string};

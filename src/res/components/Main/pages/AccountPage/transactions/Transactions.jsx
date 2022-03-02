@@ -1,5 +1,5 @@
+import Proptype             from "prop-types";
 import { TransactionInput } from "./TransactionInput";
-import { PropTypes }        from "res/proptypes/proptypes";
 
 export const Transactions = ({WITHDRAW, DEPOSIT}) => {
   return(
@@ -11,6 +11,7 @@ export const Transactions = ({WITHDRAW, DEPOSIT}) => {
   );
 };
 
-const {TransactionProptypes} = PropTypes;
-Transactions.propTypes       = {...TransactionProptypes};
-
+Transaction.propTypes = {
+  WITHDRAW: Proptype.string,
+  DEPOSIT:  Proptype.string,
+};

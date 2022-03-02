@@ -1,4 +1,4 @@
-import { PropTypes }                 from "res/proptypes/proptypes";
+import Proptype                      from "prop-types";
 import { AccountOption, ButtonType } from "res/global/constants";
 import { ExpenseButton }             from "./ExpenseButton";   
 
@@ -69,6 +69,10 @@ export const ExpenseItem = ({name, value, id}) => {
   );
 };
 
-const {ExpenseItemProptypes} = PropTypes;
-ExpenseItem.propTypes        = {...ExpenseItemProptypes}
 
+
+ExpenseItem.propTypes = {
+  name:  Proptype.string,
+  value: Proptype.number,
+  id:    Proptype.number,
+};

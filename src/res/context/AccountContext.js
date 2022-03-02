@@ -1,10 +1,11 @@
-import { PropTypes } from "res/proptypes/proptypes";
+import Proptype from "prop-types";
 
 import { createContext, useContext } from "react";
 
 export const AccountContext       = createContext(null);
 export const useAccountContext    = () => useContext(AccountContext);
 
-const {AccountContextProptypes}   = PropTypes;
-AccountContext.Provider.propTypes = {...AccountContextProptypes};
-
+AccountContext.Provider.propTypes = {
+  children: Proptype.array,
+  value:    Proptype.object,
+};
