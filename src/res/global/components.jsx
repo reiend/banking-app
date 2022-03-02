@@ -1,4 +1,4 @@
-import { PropTypes } from "res/proptypes/proptypes";
+import Proptype       from "prop-types";
 import { forwardRef } from "react";
 
 const Input = forwardRef(({name}, ref) => <input 
@@ -7,9 +7,20 @@ const Input = forwardRef(({name}, ref) => <input
   name={name} 
   ref={ref} />);
 
+Input.propTypes = {
+  name: Proptype.string,
+};
+
+
 const Button = ({title, onClick, name}) => {
   if(!title) return <button name={name} onClick={onClick}>{name}</button>
   if(!name)  return <button onClick={onClick}>{title}</button>
+};
+
+
+ButtonType.propTypes = {
+  title:   Proptype.string,
+  onClick: Proptype.func,
 };
 
 
@@ -31,14 +42,8 @@ const SearchIcon = ({className}) => {
   );
 };
 
-
-const {
-  InputPropTypes, 
-  ButtonPropTypes,
-  SearchIconPropTypes,
-} = PropTypes;
-
-Button.propTypes                        = {...ButtonPropTypes};
-Input.propTypes                         = {...InputPropTypes};
-SearchIcon.propTypes                    = {...SearchIconPropTypes};
+SearchIcon.propTypes = {
+  className: Proptype.string,
+};
 export {Input, Button, SearchIcon};
+
