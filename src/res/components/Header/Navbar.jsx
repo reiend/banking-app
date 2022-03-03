@@ -1,7 +1,9 @@
-import { Random }          from "res/global/utils";
-import { Divider, chakra } from "@chakra-ui/react";
+import Proptype               from "prop-types";
+import { Random }             from "res/global/utils";
+import { HamburgerIcon }      from "@chakra-ui/icons";
+import { Button, chakra }     from "@chakra-ui/react";
 
-export const Navbar = () => {
+export const Navbar = ({isShow, onClickShow}) => {
   const navbarLists = [
     "Home",
     "Learn more",
@@ -13,32 +15,57 @@ export const Navbar = () => {
   return (
     <chakra.nav
       flexBasis="100%"
-      display={{base: "none", md: "flex"}}
+      display="flex"
       justifyContent="center"
       alignItems="center"
       marginTop="1.2rem"
+      pos={{base: "fixed", md: "static"}}
+      right="2rem"
      >
+      <Button 
+        display={{base: "block", md: "none"}}
+        top={{base: "85vh", sm: `${!isShow? "50vh" : "85vh"}`}}
+        onClick={onClickShow}
+        transition="100ms ease-in-out"
+        zIndex="2"
+      >
+        <HamburgerIcon/>  
+      </Button> 
       <chakra.ul 
-        display='flex'
+        display={{base: `${!isShow? "none" : "flex"}`, md: "flex"}}
         flexBasis="70%"
         maxWidth="50rem"
-        justifyContent="space-around"
+        justifyContent={{base: `space-around`, md: "space-between"}}
+        flexDirection={{base: "column", md: "row"}}
+        pos={{base: "fixed", md: "static"}}
+        top="45vh"
+        textAlign="center"
+        h="40%"
       >
         {
           navbarLists
             .map(navbarList => 
               <chakra.li 
+                cursor="pointer"
+                _hover={{color: "#66e18b"}}
                 listStyleType="none"
                 fontWeight="500"
-                color="#3B3C54"
-                fontSize="clamp(1rem, 0.5vw, 1.25rem)"
+                color="#3b3c54"
+                fontSize="fluid-1"
+                pos="relative"
                 key={Random.getKey(navbarList)}
+                transition="color 200ms linear"
               >
                 {navbarList}
               </chakra.li>)
         }
       </chakra.ul>
-    </chakra.nav>
+  </chakra.nav>
   );
 };
+
+Navbar.protoTypes = {
+  isShow:      Proptype.boolean,
+  onClickShow: Proptype.func
+}
 

@@ -6,17 +6,17 @@ export const HeaderTitle = () => {
     <chakra.a>
       <chakra>
         <chakra.span 
-          color="#66e18b"
+          color="primary.300"
           fontWeight="600"
-          fontSize="clamp(1.75rem, 2.5vw, 3rem)"
+          fontSize="fluid-500"
           fontStyle="italic"
           >
           many
         </chakra.span>
         <chakra.span
-          color="#3b3c54"
+          color="secondary.700"
           fontWeight="500"
-          fontSize="clamp(1.75rem, 2.5vw, 3rem)"
+          fontSize="fluid-500"
         >
           Bank
         </chakra.span>

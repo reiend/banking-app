@@ -1,5 +1,4 @@
-import { Button, chakra } from "@chakra-ui/react";
-
+import { Button, chakra, } from "@chakra-ui/react";
 export const HeaderAgenda = () => {
   return(
     <chakra.div
@@ -38,11 +37,10 @@ export const HeaderAgenda = () => {
           bg:"#ffffff"
         }}  
         _hover={{ 
-          color: "#3b3c54",
+          color: "secondary.700",
           boxShadow:"0 0 0 0.1rem #22aa4b",
           bg:"#ffffff"
         }}  
-    
         color="#ffffff"
         bg="#66e18b"
         fontWeight="400"

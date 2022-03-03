@@ -1,14 +1,14 @@
 import { Main }    from "res/components/Main/Main";
 import { Header }  from "res/components/Header/Header";
-import { chakra }  from "@chakra-ui/react";
+import { Container, chakra }  from "@chakra-ui/react";
 
 
 function App() {
   return (
-    <chakra.section>
+    <Container maxWidth="container.xl">
       <Header/>
       <Main/>
-    </chakra.section>
+    </Container>
   );
 }
 
