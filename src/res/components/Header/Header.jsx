@@ -3,11 +3,14 @@ import { HeaderSearch } from "./HeaderSearch";
 import { HeaderAgenda } from "./HeaderAgenda";
 import { Navbar }       from "./Navbar";
 import { Flex, chakra } from "@chakra-ui/react";
+import { useState }           from "react";
 
 export const Header = ()  => {
+  const [isShow, setIsShow] = useState(false);
+  const onClickShow         = () => setIsShow((isShow) => !isShow);
   return (
     <chakra.header 
-      p="1rem 2rem"
+      p="1rem 0"
       display="flex"
       flexWrap="wrap"
     >
@@ -18,7 +21,7 @@ export const Header = ()  => {
         pos="relative"
       >
         <HeaderTitle/>
-        <HeaderSearch/>
+        <HeaderSearch isShow={isShow} onClickShow={onClickShow}/>
         <HeaderAgenda/>
         <chakra.div 
           pos="absolute"
@@ -26,10 +29,9 @@ export const Header = ()  => {
           height="0.05rem"
           bottom="-0.5rem"
           bg="#3B3C54"
-        >
-        </chakra.div>
+        />
       </Flex>
-      <Navbar/>
+      <Navbar  isShow={isShow} onClickShow={onClickShow}/>
     </chakra.header>
   );
 };

@@ -3,8 +3,8 @@ import React              from 'react';
 import ReactDOM           from 'react-dom';
 import { ChakraProvider } from "@chakra-ui/react";
 
-import reportWebVitals from './reportWebVitals';
-import { theme }       from 'res/themes/themes';
+import reportWebVitals from "./reportWebVitals";
+import { theme }       from "res/themes";
 
 import '@fontsource/raleway/500.css'
 import '@fontsource/raleway/600.css'

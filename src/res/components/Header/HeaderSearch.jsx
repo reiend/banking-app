@@ -1,26 +1,30 @@
+import Proptype          from "prop-types";
 import { SearchIcon }    from "@chakra-ui/icons";
 import { Input, chakra } from "@chakra-ui/react";
 
-export const HeaderSearch = () => {
+export const HeaderSearch = ({isShow}) => {
   return (
     <chakra.form action="/" 
-      flexBasis="30%"
-      maxWidth="30rem"    
-      display={{base: "none", md: "block"}}
+      flexBasis="40%"
+      maxWidth="40rem"    
+      display={{base: `${!isShow? "none": "block"}`, md: "block"}}
+      pos={{base: `${!isShow? "static" : "absolute"}`, md: "static"}}
+      top="88vh"
+      left="0"
+      w={{base: "50%", md: "auto"}}
+      justifySelf="flex-start"
       >
       <chakra.div
         pos="relative"> 
         <SearchIcon 
-          fontSize="clamp(1rem, 1vw, 1.5rem)"
+          fontSize="fluid-200"
           pos="absolute"
           top="50%"
           left="0.5rem"
+          zIndex="1"
           transform="translateY(-50%)" />
         <Input 
-          _focus={{
-            border:"0.1rem solid #66e18b",
-          }}
-          fontSize="clamp(1.25rem, 1vw, 1.75rem)"
+          fontSize="fluid-300"
           pl="clamp(1.75rem, 2vw, 2.5rem)"
           width="100%"
           type="text" 
@@ -32,4 +36,8 @@ export const HeaderSearch = () => {
     </chakra.form>
   )
 };
+
+HeaderSearch.protoTypes = {
+  isShow:      Proptype.boolean,
+}
 
