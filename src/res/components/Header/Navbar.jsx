@@ -1,4 +1,3 @@
-import Proptype           from "prop-types";
 import { Random }         from "res/global/utils";
 import { HamburgerIcon }  from "@chakra-ui/icons";
 import { Button, chakra } from "@chakra-ui/react";
@@ -69,9 +68,4 @@ export const Navbar = () => {
   </chakra.nav>
   );
 };
-
-Navbar.protoTypes = {
-  isShow:      Proptype.boolean,
-  onClickShow: Proptype.func
-}
 

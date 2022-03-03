@@ -1,4 +1,3 @@
-import Proptype          from "prop-types";
 import { SearchIcon }    from "@chakra-ui/icons";
 import { Input, chakra } from "@chakra-ui/react";
 
@@ -40,8 +39,4 @@ export const HeaderSearch = () => {
     </chakra.form>
   )
 };
-
-HeaderSearch.protoTypes = {
-  isShow:      Proptype.boolean,
-}
 
