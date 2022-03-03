@@ -67,29 +67,26 @@ const theme = extendTheme({
         variants: {
           "outline": {
             _focus: {
-              boxShadow:"0 0 0 0.1rem primary.300",
-              color:"#ffffff",
+              boxShadow:"none"
             },
             _hover: {
-              boxShadow:"0 0 0 0.1rem primary.300",
               bg:"primary.300",
               color:"#ffffff",
             },
-            _focusWithin: {
-              bg:"primary.300",
-            },
           },
+
           "solid": {
             _focus: {
-              boxShadow:"0 0 0 0.1rem primary.700",
+              boxShadow:"none"
             },
             _hover: {
               color: "secondary.700",
-              boxShadow:"0 0 0 0.1rem #22aa4b",
-              bg:"#ffffff"
-            },
-            _focusWithin: {
+              border: "0.10rem solid lightgreen",
               bg: "#ffffff",
+            },
+            _active: {
+              bg: "primary.300",
+              color: "#ffffff"
             },
           },
         },
