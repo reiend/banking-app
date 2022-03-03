@@ -4,6 +4,25 @@ import {
   withDefaultVariant,
 } from '@chakra-ui/react'
 
+const InputTheme = {
+  variants: {
+    filled: {
+      field: {
+        _focus: {
+          borderColor: "primary.300"
+        }
+      }
+    }
+  },
+  sizes: {
+    md: {
+      field: {
+        borderRadius: "2rem"
+      }
+    }
+  }
+};
+
 const theme = extendTheme({
     colors: {
       primary: {
@@ -43,24 +62,38 @@ const theme = extendTheme({
       "fluid-500": "clamp(1.75rem, 2.5vw, 3rem)",
     },
     components: {
-      Input: {
+      Input: {...InputTheme},
+      Button: {
         variants: {
-          filled: {
-            field: {
-              _focus: {
-                borderColor: "primary.300"
-              }
-            }
-          }
+          "outline": {
+            _focus: {
+              boxShadow:"0 0 0 0.1rem primary.300",
+              color:"#ffffff",
+            },
+            _hover: {
+              boxShadow:"0 0 0 0.1rem primary.300",
+              bg:"primary.300",
+              color:"#ffffff",
+            },
+            _focusWithin: {
+              bg:"primary.300",
+            },
+          },
+          "solid": {
+            _focus: {
+              boxShadow:"0 0 0 0.1rem primary.700",
+            },
+            _hover: {
+              color: "secondary.700",
+              boxShadow:"0 0 0 0.1rem #22aa4b",
+              bg:"#ffffff"
+            },
+            _focusWithin: {
+              bg: "#ffffff",
+            },
+          },
         },
-        sizes: {
-          md: {
-            field: {
-              borderRadius: "2rem"
-            }
-          }
-        }
-      }
+      },
     },
   },
   withDefaultColorScheme({

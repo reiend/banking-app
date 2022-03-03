@@ -5,7 +5,7 @@ import { Input, chakra } from "@chakra-ui/react";
 export const HeaderSearch = ({isShow}) => {
   return (
     <chakra.form action="/" 
-      flexBasis="50%"
+      flexBasis="40%"
       maxWidth="40rem"    
       display={{base: `${!isShow? "none": "block"}`, md: "block"}}
       pos={{base: `${!isShow? "static" : "absolute"}`, md: "static"}}
