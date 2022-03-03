@@ -2,7 +2,11 @@ import Proptype          from "prop-types";
 import { SearchIcon }    from "@chakra-ui/icons";
 import { Input, chakra } from "@chakra-ui/react";
 
-export const HeaderSearch = ({isShow}) => {
+import { useAppControllerContext } from "res/context/AppControllerContext";
+
+export const HeaderSearch = () => {
+  const {isShow} = useAppControllerContext();
+
   return (
     <chakra.form action="/" 
       flexBasis="40%"

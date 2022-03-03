@@ -1,9 +1,14 @@
-import Proptype               from "prop-types";
-import { Random }             from "res/global/utils";
-import { HamburgerIcon }      from "@chakra-ui/icons";
-import { Button, chakra }     from "@chakra-ui/react";
+import Proptype           from "prop-types";
+import { Random }         from "res/global/utils";
+import { HamburgerIcon }  from "@chakra-ui/icons";
+import { Button, chakra } from "@chakra-ui/react";
 
-export const Navbar = ({isShow, onClickShow}) => {
+import { useAppControllerContext } from "res/context/AppControllerContext";
+
+export const Navbar = () => {
+  const {isShow, setIsShow} = useAppControllerContext();
+  const onClickShow         = () => setIsShow((isShow) => !isShow);
+
   const navbarLists = [
     "Home",
     "Learn more",
@@ -31,6 +36,7 @@ export const Navbar = ({isShow, onClickShow}) => {
       >
         <HamburgerIcon/>  
       </Button> 
+
       <chakra.ul 
         display={{base: `${!isShow? "none" : "flex"}`, md: "flex"}}
         flexBasis="70%"
