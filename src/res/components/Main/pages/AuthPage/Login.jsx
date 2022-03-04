@@ -73,7 +73,7 @@ export const Login = () => {
 
           <Button 
             as={Link}
-            to="account"
+            to="/account"
             colorScheme="primary" 
             variant="outline" 
             type="submit"
