@@ -1,10 +1,11 @@
-import App                from './App';
-import React              from 'react';
-import ReactDOM           from 'react-dom';
+import App from './App';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import reportWebVitals from "./reportWebVitals";
-import { theme }       from "res/themes";
+import { theme } from "res/themes";
 
 import '@fontsource/raleway/500.css'
 import '@fontsource/raleway/600.css'
@@ -16,9 +17,11 @@ import '@fontsource/open-sans/700.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <App />
-    </ChakraProvider>
+    <Router>
+        <ChakraProvider theme={theme}>
+          <App />
+        </ChakraProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
