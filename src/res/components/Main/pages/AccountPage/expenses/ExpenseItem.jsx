@@ -1,6 +1,7 @@
 import Proptype                      from "prop-types";
 import { AccountOption, ButtonType } from "res/global/constants";
 import { ExpenseButton }             from "./ExpenseButton";   
+import { chakra }                    from "@chakra-ui/react";
 
 import { useAccountContext }  from "res/context/AccountContext";  
 import { useExpensesContext } from "res/context/ExpensesContext";
@@ -55,17 +56,41 @@ export const ExpenseItem = ({name, value, id}) => {
   const onClickExpenseItemEdit   = () => doExpenseItemEdit();
   const onClickExpenseItemPay    = () => doExpenseItemPay();
 
-  const pay    = {title: PAY, onClick: onClickExpenseItemPay}
-  const edit   = {title: EDIT, onClick: onClickExpenseItemEdit}
-  const remove = {title: DELETE, onClick: onClickExpenseItemDelete}
+  const pay    = {
+    title: PAY, 
+    onClick: 
+    onClickExpenseItemPay, 
+    colorScheme: "primary",
+    variant: "solid",
+  };
+  const edit   = {
+    title: EDIT, 
+    onClick: 
+    onClickExpenseItemEdit, 
+    colorScheme: "secondary",
+    variant: "ghost",
+  };
+  const remove = {
+    title: DELETE, 
+    onClick: onClickExpenseItemDelete, 
+    colorScheme: "red",
+    variant: "ghost"
+  }
 
   return( 
-    <li id={id} ref={expenseItemRef}>
-      <span>{name}</span>-<span>{value}</span>
+    <chakra.li 
+      id={id} ref={expenseItemRef}
+      display="grid"
+      gridTemplateColumns="repeat(5, 1fr)"      
+      w="100%"
+      m="1rem 0"
+      >
+      <span>{name}</span>
+      <span>${value}</span>
       <ExpenseButton {...pay}/>
       <ExpenseButton {...edit}/>
       <ExpenseButton {...remove}/>
-    </li>
+    </chakra.li>
   );
 };
 
@@ -73,6 +98,6 @@ export const ExpenseItem = ({name, value, id}) => {
 
 ExpenseItem.propTypes = {
   name:  Proptype.string,
-  value: Proptype.number,
+  value: Proptype.string,
   id:    Proptype.number,
 };

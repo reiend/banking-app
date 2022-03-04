@@ -25,13 +25,13 @@ export const Navbar = () => {
       marginTop="1.2rem"
       pos={{base: "fixed", md: "static"}}
       right="2rem"
+      zIndex="1"
      >
       <Button 
         display={{base: "block", md: "none"}}
         top={{base: "85vh", sm: `${!isShow? "50vh" : "85vh"}`}}
         onClick={onClickShow}
         transition="100ms ease-in-out"
-        zIndex="2"
       >
         <HamburgerIcon/>  
       </Button> 

@@ -8,7 +8,7 @@ export const HeaderTitle = () => {
         <chakra.span 
           color="primary.300"
           fontWeight="600"
-          fontSize="fluid-600"
+          fontSize="fluid-700"
           fontStyle="italic"
           >
           many
@@ -16,7 +16,7 @@ export const HeaderTitle = () => {
         <chakra.span
           color="secondary.700"
           fontWeight="500"
-          fontSize="fluid-600"
+          fontSize="fluid-700"
         >
           Bank
         </chakra.span>

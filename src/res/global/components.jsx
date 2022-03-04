@@ -1,7 +1,11 @@
 import Proptype       from "prop-types";
 import { forwardRef } from "react";
+import { 
+  Button as ButtonCustom, 
+  Input as InputCustom,
+} from "@chakra-ui/react"
 
-const Input = forwardRef(({name}, ref) => <input 
+const Input = forwardRef(({name}, ref) => <InputCustom 
   type="text" 
   id={name} 
   name={name} 
@@ -12,9 +16,32 @@ Input.propTypes = {
 };
 
 
-const Button = ({title, onClick, name}) => {
-  if(!title) return <button name={name} onClick={onClick}>{name}</button>
-  if(!name)  return <button onClick={onClick}>{title}</button>
+const Button = ({title, onClick, name, colorScheme, variant, w}) => {
+  if(!title) { 
+    return (
+      <ButtonCustom 
+        variant="outline" 
+        name={name} 
+        onClick={onClick}
+        colorScheme={colorScheme} 
+        variant={variant}
+        w={w}
+      >
+        {name}
+      </ButtonCustom>
+    );
+  }
+  if(!name) {
+    return (
+      <ButtonCustom 
+        colorScheme={colorScheme} 
+        variant={variant}
+        onClick={onClick}
+      >
+        {title}
+      </ButtonCustom>
+    );
+  }
 };
 
 
