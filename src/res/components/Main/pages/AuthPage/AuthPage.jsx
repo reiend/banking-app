@@ -1,6 +1,7 @@
 
 import { chakra } from "@chakra-ui/react";
 import { Login } from "./Login";
+import { Signup } from "./Signup";
 
 export const AuthPage = () => {
   return(

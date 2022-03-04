@@ -59,10 +59,18 @@ const accountReducer = (previousState, attribute) => {
   const doDeposit  = () => ({...balanceUpdateDeposit});
 
   // Do Expenses operation
-  const doAdd    = () => {addExpense(); return ({...totalExpensesPay})};
-  const doPay    = () => {deleteExpense(); return ({...balanceUpdatePay})};
-  const doEdit   = () => {addEditExpense(); return ({...expensesUpdate})};
-  const doDelete = () => {deleteExpense(); return ({...updateTotalExpense})};
+  const doAdd    = () => {
+    addExpense(); 
+    return ({...totalExpensesPay})};
+  const doPay    = () => {
+    deleteExpense(); 
+    return ({...balanceUpdatePay})};
+  const doEdit   = () => {
+    addEditExpense(); 
+    return ({...expensesUpdate})};
+  const doDelete = () => {
+    deleteExpense(); 
+    return ({...updateTotalExpense})};
   
   // Do Total Expenses operation
   const doUpdateTotalExpense = () => ({...totalExpensesUpdate});

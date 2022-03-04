@@ -64,11 +64,11 @@ export const Account = () => {
         </Text>
         <Text as="div"{...accountInfoTextStyle}>
           <chakra.span>Balance:</chakra.span>
-          <chakra.span>{balance}</chakra.span>
+          <chakra.span>${balance.toFixed(2)}</chakra.span>
         </Text>
         <Text as="div"{...accountInfoTextStyle}>
           <chakra.span>Total Expenses:</chakra.span>
-          <chakra.span>{totalExpenses}</chakra.span>
+          <chakra.span>${totalExpenses.toFixed(2)}</chakra.span>
         </Text>
       </Box>
     </chakra.section>

@@ -68,6 +68,7 @@ export const AccountPage = () => {
               _hover={{
                 color: "primary.300"
               }}
+              cursor="pointer"
             >
               Transaction
             </chakra.a>    
@@ -77,6 +78,7 @@ export const AccountPage = () => {
               _hover={{
                 color: "primary.300"
               }}
+              cursor="pointer"
             >
               Expenses
             </chakra.a>    
