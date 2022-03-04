@@ -59,8 +59,9 @@ const theme = extendTheme({
       "fluid-200": "clamp(1rem, 1vw, 1.5rem)",
       "fluid-300": "clamp(1rem, 1.5vw, 1.5rem)",
       "fluid-400": "clamp(1.25rem, 1vw, 1.75rem)",
-      "fluid-500": "clamp(1.25rem, 1.75vw, 2rem)",
-      "fluid-600": "clamp(1.75rem, 2.5vw, 3rem)",
+      "fluid-500": "clamp(1rem, 2vw, 1.50rem)",
+      "fluid-600": "clamp(0.90rem, 2vw, 2rem)",
+      "fluid-700": "clamp(1.75rem, 2.5vw, 3rem)",
     },
     components: {
       Input: {...InputTheme},

@@ -22,14 +22,14 @@ export const Account = () => {
     display:"flex",
     justifyContent:"space-between",
     w:"100%",
-    fontSize:"fluid-500",
+    fontSize: "fluid-600",
     fontWeight:"600",
     color: "primary.800"
   };
 
   return(
     <chakra.section
-      flexBasis="50%"    
+      flexBasis={{base: "70%", md: "50%"}}
       display="flex"
       alignItems="center"
       justifyContent="center"
@@ -41,7 +41,7 @@ export const Account = () => {
         textAlign="center"
         flexDirection="column"
         h="100%"
-        w={{base: "100%", md: "70%"}}
+        w={{base: "75%", md: "70%"}}
         p="2rem"
       >
         <Icon

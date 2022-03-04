@@ -3,8 +3,11 @@ import { chakra }      from "@chakra-ui/react";
 
 export const Main = () => {
   return (
-    <chakra.div >
+    <chakra.div 
+      pos="relative"
+    >
       <AccountPage/>
+      {/* <LoginPage/> */}
     </chakra.div>
   );
 };

@@ -4,6 +4,7 @@ import { ExpenseInfo }                            from "res/global/constants";
 import { ResetValue, ButtonType, EditingChoices } from "res/global/constants";
 import { CurrencyUtils }                          from "res/global/utils";
 import { ExpenseButton }                          from "./ExpenseButton";
+import { Flex, chakra }                           from "@chakra-ui/react";
 
 import { useAccountContext }  from "res/context/AccountContext";
 import { useExpensesContext } from "res/context/ExpensesContext";
@@ -23,7 +24,6 @@ export const ExpenseInput = () => {
     const {ADD_EXPENSE, EDIT_EXPENSE}         = ExpensesOption;
     const {CANCEL_EDIT_EXPENSE: CANCEL_EDIT}  = ExpensesOption;
     const {RESET_STRING_VALUE}                = ResetValue;
-    const {NO}                                = EditingChoices;
     const {isInvalidCurrency, currencyFormat} = CurrencyUtils;
 
     const expenseNameObject  = expenseNameRef.current;
@@ -58,10 +58,18 @@ export const ExpenseInput = () => {
 
     // Expense options
     switch(DO) {
-      case ADD:     setAddExpense();  break;
-      case SAVE:    setEditExpense(); updateTotalExpense(); break;
-      case CANCEL:  cancelEdit();     break;
-      default:      break;
+      case ADD:     
+        setAddExpense();  
+        break;
+      case SAVE:    
+        setEditExpense(); 
+        updateTotalExpense(); 
+        break;
+      case CANCEL:  
+        cancelEdit();     
+        break;
+      default:      
+        break;
     }
 
     // Reset input
@@ -70,26 +78,75 @@ export const ExpenseInput = () => {
   };
 
   const onClickExpenseDo  = (event) => doExpense(event);
-  const doButton          = (name) => ({name, onClick: onClickExpenseDo});
+  const doButton          = (name) => {
+    if(name === "cancel") {
+        return ({
+          name, 
+          onClick: onClickExpenseDo, 
+          colorScheme: "red", 
+          variant: "ghost"
+        });
+    }
+    else if(name === "save") {
+        return ({
+          name, 
+          onClick: onClickExpenseDo, 
+          colorScheme: "secondary", 
+          variant: "solid"
+        });
+    }
+    else if(name === "add") {
+        return ({
+          name, 
+          onClick: onClickExpenseDo, 
+          w: "100%",
+        });
+    }
+    return ({name, onClick: onClickExpenseDo});
+  };
 
   return(
     <div>
-      {!isEditing && <h4>List new Expense</h4>}
-      {isEditing && <h4>Editing Expense</h4>}
+      {!isEditing 
+        && <chakra.h4
+            my="1rem"
+            fontWeight="600"
+            fontSize="fluid-400"
+           >List new Expense</chakra.h4>}
+      {isEditing 
+          && <chakra.h4
+            my="1rem"
+            fontSize="fluid-400"
+            fontWeight="600"
+             >Editing Expense</chakra.h4>}
+      <Flex 
+        flexWrap="wrap"
+      >
+        <chakra.div
+          flexBasis={{base: "100%", md: "50%"}}
+        >
+          <label htmlFor={EXPENSE_NAME}>Expense: </label>
+          <Input name={EXPENSE_NAME} ref={expenseNameRef}/>   
+        </chakra.div>
 
-      <div>
-        <label htmlFor={EXPENSE_NAME}>Expense: </label>
-        <Input name={EXPENSE_NAME} ref={expenseNameRef}/>   
-      </div>
-
-      <div>
-        <label htmlFor={EXPENSE_VALUE}>Value: </label>
-        <Input name={EXPENSE_VALUE} ref={expenseValueRef}/>
-      </div>
-
-      {!isEditing && <ExpenseButton {...doButton(ADD)}/>}
-      {isEditing  && <ExpenseButton {...doButton(SAVE)}/>}
-      {isEditing  && <ExpenseButton {...doButton(CANCEL)}/>}
+        <chakra.div
+          flexBasis={{base: "100%", md: "50%"}}
+        >
+          <label htmlFor={EXPENSE_VALUE}>Value: </label>
+          <Input name={EXPENSE_VALUE} ref={expenseValueRef}/>
+        </chakra.div>
+      </Flex>
+      
+      <Flex
+        justifyContent="space-between"
+        w="50%"
+        m="1rem auto"    
+        
+      >
+        {!isEditing && <ExpenseButton {...doButton(ADD)}/>}
+        {isEditing  && <ExpenseButton {...doButton(SAVE)}/>}
+        {isEditing  && <ExpenseButton {...doButton(CANCEL)}/>}
+      </Flex>   
     </div>
   );
 };

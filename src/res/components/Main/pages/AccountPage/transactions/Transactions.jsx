@@ -1,13 +1,24 @@
 import Proptype             from "prop-types";
 import { TransactionInput } from "./TransactionInput";
+import { chakra }           from "@chakra-ui/react";
 
 export const Transactions = ({WITHDRAW, DEPOSIT}) => {
   return(
-    <section className="">
-      <h3>Transaction</h3>
+    <chakra.section className=""
+      display="flex"
+      flexDirection="column"
+      w="80%"
+      m="0 auto"
+    >
+      <chakra.h3
+        fontWeight="700"
+        fontSize="fluid-500"
+      >
+        Transaction
+      </chakra.h3>
       <TransactionInput transaction={DEPOSIT}/>
       <TransactionInput transaction={WITHDRAW}/>
-    </section>
+    </chakra.section>
   );
 };
 

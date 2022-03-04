@@ -8,9 +8,11 @@ export const Header = ()  => {
 
   return (
     <chakra.header 
-      p="1rem 0"
+      p="1rem 2rem"
       display="flex"
       flexWrap="wrap"
+      pos="relative"
+      w="100%"
       h="10vh"
     >
       <Flex 

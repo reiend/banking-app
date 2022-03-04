@@ -1,6 +1,7 @@
 import { ExpenseItem }      from "./ExpenseItem";
 import { Random }           from "res/global/utils";
 import { ExpensesListInfo } from "res/global/constants";
+import { chakra }           from "@chakra-ui/react";
 
 import { useAccountContext }  from "res/context/AccountContext";
 import { useExpensesList }    from "res/states/ExpensesListState";
@@ -27,19 +28,43 @@ export const ExpensesList = () => {
       return <ExpenseItem key={expenseItemKey} {...expenseItemInfo} id={i}/>;
     });
 
-    setExpensesList(account.expenses.map(expensesListRaw));
+    setExpensesList(account.expenses.map(expensesListRaw).reverse());
   };
 
   useEffect(doExpensesList(), [expensesLength, isEditing, balance]);
   const hasExpenses = account.expenses.length !== ZERO;
 
   return(
-    <div>
-      {hasExpenses  && <h4>List of Expenses</h4>}
-      {hasExpenses  && <ul>{expensesList}</ul>}
+    <chakra.div
+      fontSize="fluid-200"
+      flexBasis="80%"
+    >
+      {hasExpenses  
+        && <chakra.h4
+            textAlign="center"
+            fontStyle="italic"        
+           >
+            List of Expenses
+          </chakra.h4>}
+      {hasExpenses  
+          && <chakra.ul
+                overflowY="scroll"
+                maxHeight="13rem"
+                p="2rem"
+                listStyleType="none"
+             >
+              {expensesList}
+            </chakra.ul>}
 
-      {!hasExpenses && <h4>No Expenses yet</h4> }
-    </div>
+      {!hasExpenses 
+          && <chakra.h4
+              textAlign="center"
+              transform={{base: "translateY(0)", lg: "translateY(6rem)"}}
+             >
+              No Expenses yet
+            </chakra.h4> 
+      }
+    </chakra.div>
   );
 };
 
