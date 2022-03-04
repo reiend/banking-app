@@ -1,3 +1,4 @@
+import { Link, } from "react-router-dom";
 import { Button, chakra, } from "@chakra-ui/react";
 
 export const HeaderAgenda = () => {
@@ -8,6 +9,8 @@ export const HeaderAgenda = () => {
       bg=""
     >
       <Button
+        as={Link}
+        to="/auth"
         variant="outline"
         fontWeight="400"
         fontSize="fluid-400"
@@ -18,6 +21,8 @@ export const HeaderAgenda = () => {
         Login
       </Button>
       <Button
+        as={Link}
+        to="/auth"
         fontWeight="400"
         fontSize="fluid-400"
         borderRadius="2rem"
